@@ -1,0 +1,40 @@
+name: CI
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:12
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_DB: template
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.0.0"
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+      - name: Build
+        run: |
+          sudo apt-get -yqq install libpq-dev
+          sudo apt-get install -y libjpeg-dev libpng-dev libtiff-dev libwebp-dev
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          yarn install --check-files
+      - name: Lint
+        run: |
+          bundle exec rubocop
+          bundle exec rails_best_practices
+          bundle exec reek
