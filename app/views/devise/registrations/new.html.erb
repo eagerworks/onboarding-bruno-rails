@@ -1,0 +1,30 @@
+<div class="d-flex flex-column px-lg-15 mb-lg-11">
+  <div class="d-flex flex-column mb-4">
+    <h2 class="fw-semibold fs-8 me-15 mb-2 mt-md-7 fs-md-10 fs-xl-8 fs-lg-7 fw-md-medium mb-xl-6">¡Bienvenido a Plan IT!</h2>
+    <p class="fw-normal fs-4  fs-md-6 lh-20 fs-xl-4 fs-lg-3">Por favor, complete su información personal para crear un usuario propio.</p>
+    <p class = "fs-3 fs-md-4 text-grey fs-xl-3"> ¿Ya tenés una cuenta?<span class = "text-blue-2"> Inicia sesión aquí.</span></p>
+  </div>
+  <div class = "mb-20 mb-lg-0" >
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="field">
+        <%= f.text_field :name, autocomplete: "name", class: "border-0 border-bottom-solid outline-none text-black w-100 mb-6 fs-md-6 mb-md-8 fs-lg-4 mb-lg-5",placeholder: "Nombre" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :last_name, autocomplete: "name", class: "border-0 border-bottom-solid outline-none text-black w-100 mb-6 fs-md-6 mb-md-8 fs-lg-4 mb-lg-5",placeholder: "Apellido" %>
+      </div>
+      <div class="field">
+        <%= f.email_field :email, autocomplete: "email", class: "border-0 border-bottom-solid outline-none text-black w-100 mb-6 fs-md-6 mb-md-8 fs-lg-4 mb-lg-5",placeholder: "Email" %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password,class: "border-0 border-bottom-solid outline-none text-black w-100 mb-6 fs-md-6 mb-md-8 fs-lg-4 mb-lg-5",placeholder: "Contraseña" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :company_name, autocomplete: "name",class: "border-0 border-bottom-solid outline-none text-black w-100 mb-10 fs-md-6 mb-md-12 fs-lg-4 mb-xl-12 mb-lg-8",placeholder: "Nombre de su empresa" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Registrarse", class: "color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3  fs-lg-4 fs-md-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100" %>
+      </div>
+    <% end %>
+  </div>
+</div>
