@@ -2,12 +2,11 @@ default: &default
   adapter: postgresql
   encoding: unicode
   username: postgres
-  password: xxxxx #<-- which you have defiend while installing postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: RoR_Platform
+  database: planit_development
 
 test:
   <<: *default
