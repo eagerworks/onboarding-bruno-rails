@@ -11,12 +11,7 @@
   </head>
   <body>
     <div class="d-none d-lg-block">
-      <% flash.each do |type, message| %>
-        <div class= "position-absolute alert alert-dismissible fade show m-2 <%= type == 'alert' ? 'alert-danger' : 'alert-success'%>" role="alert">
-          <%=raw(message) %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <% end %>
+      <%= render "application/flash" %>
     </div>
     <div class="vw-100 position-relative overflow-x-clip d-lg-none">
       <div class="flex-row  position-absolute bg-Blue-lg-30deg rounded-5 header-decline transform-sm transform-md" >
@@ -24,12 +19,7 @@
     </div>
     <div class="px-3 px-md-10 p-lg-0">
       <div class="pt-10 pt-sm-5 pt-md-3 justify-content-between d-flex position-relative mb-20 d-lg-none">
-        <% flash.each do |type, message| %>
-          <div class= "position-absolute alert alert-dismissible fade show <%= type == 'alert' ? 'alert-danger' : 'alert-success'%>" role="alert">
-            <%=raw(message) %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        <% end %>
+        <%= render "application/flash" %>
         <div>
           <%=image_tag("white_logo.svg", class: "white-logo")%>
         </div>
