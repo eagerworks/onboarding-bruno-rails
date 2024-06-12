@@ -1,2 +1,367 @@
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+$spacers: (
+  0: 0,
+  1: $spacer * 0.3,//5px
+  2: $spacer * 0.6, //10px
+  3: $spacer,
+  4: $spacer * 1.25,
+  5: $spacer * 1.5,
+  6: $spacer * 1.9,
+  7: $spacer * 2.2,
+  8: $spacer * 2.5, //40px
+  9: $spacer * 2.8,
+  10: $spacer * 3.1,
+  11: $spacer * 3.4,
+  12: $spacer * 3.8,
+  13: $spacer * 4,
+  14: $spacer * 4.3,
+  15: $spacer * 4.7,
+  16: $spacer * 5, //80
+  17: $spacer * 5.3,
+  18: $spacer * 5.6,
+  19: $spacer * 5.9,
+  20: $spacer * 6.3,//100
+  21: $spacer * 9.3,//150
+  22: $spacer * 12.5,//200
+  23: $spacer * 15,//250
+  24: $spacer * 18.8,//300
+  25: $spacer * 21.9,//350
+  26: $spacer * 37.5,//600
+  27: $spacer * 46,//750
+);
+
+$theme-colors: map-merge(
+  $theme-colors,("blue-2":#0F58B7,"skyblue" : #9BC7FF,"grey" : #B3B3B3)
+);
+
+//$utilities-text-colors: map-merge($utilities-text-colors,("blue-2":#0F58B7);
+
+
+$font-family-base:Poppins;
+$btn-padding-y:0.5rem;
+$btn-padding-x:3.125rem;
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/mixins";
+@import "mixin";
+
+
+$utilities: map-merge(
+  $utilities,
+  (
+
+      "font-weight":
+        map-merge(
+          map-get($utilities, "font-weight"),
+          (
+            responsive: true,
+          )
+        ),
+
+
+      "width":
+      map-merge(
+        map-get($utilities, "width"),
+        (
+          responsive: true,
+        )
+      ),
+
+      "translate-middle":
+        map-merge(
+          map-get($utilities, "translate-middle"),
+          (
+            responsive: true,
+          )
+        ),
+
+      "max-width":
+        map-merge(
+          map-get($utilities, "max-width"),
+          (
+            values:
+              map-merge(
+                map-get(map-get($utilities, "max-width"), "values"),
+                (
+                  600: 600px,
+                  750: 750px,
+                  1200: 1200px,
+                )
+              ),
+          )
+        ),
+
+      "border-color":
+        map-merge(
+          map-get($utilities, "border-color"),
+          (
+            values:
+              map-merge(
+                map-get(map-get($utilities, "border-color"), "values"),
+                (
+                  transparent: transparent,
+                  blue: color-mix(in srgb, #0f58b7, #62d9ff),
+
+                )
+              ),
+          )
+        ),
+
+
+      "border-bottom":
+        map-merge(
+          map-get($utilities, "border-bottom"),
+          (
+            values:
+              map-merge(
+                map-get(map-get($utilities, "border-bottom"), "values"),
+                (
+                  solid: 1px solid,
+                )
+              ),
+          )
+        ),
+
+      "line-height":
+        map-merge(
+          map-get($utilities, "line-height"),
+          (
+            responsive: true,
+            values:
+              map-merge(
+                map-get(map-get($utilities, "line-height"), "values"),
+                (
+                  2: 1.25,
+                  20: 20px,
+                  37: 37px,
+                  45: 45px,
+                  50: 52px,
+                  60: 60px,
+                  65: 65px,
+                )
+              ),
+          )
+        ),
+
+
+      "font-size": (
+        property: font-size,
+        class: fs,
+        responsive: true,
+        values: (
+          1: 12px,
+          2: 14px,
+          3: 16px,
+          4: 18px,
+          5: 20px,
+          6: 25px,
+          7: 30px,
+          8: 35px,
+          9: 48px,
+          10: 60px,
+          11: 70px,
+        ),
+      ),
+
+     "background-color": (
+      property: background,
+      class: bg,
+      values: (
+        skyblue: #f2f7ff,
+        white: white,
+        linear-sky-blue:linear-gradient(46.77deg, #0f99b7 -0.79%, #69ecdc 131.52%),
+        grey: #eeeeee,
+        intensive-blue: #0f58b7,
+        mix-blue: color-mix(in srgb, #0f58b7, #62d9ff),
+        transparent: transparent,
+      ),
+    ),
+  )
+);
+
+.img-highlight{
+  width: 325px;
+  height: 275px;
+}
+
+.header-logo{
+  width:100px;
+  height: 33px;
+}
+
+.card-size{
+  width: 122px;
+  height: 122px;
+}
+
+.footer-logo{
+  width:100px;
+  height: 38px;
+}
+
+.text-in-image{
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.header-decline {
+  transform: rotate(10deg) translateY(-356px) translateX(-94px);
+  width: 118vw;
+  height: 500px;
+  padding: 0 126px;
+}
+
+.list-style-type-none{
+  list-style-type: none;
+}
+
+.border-top-solid{
+  border-top: solid;
+}
+.border-top-1{
+  border-top-width: 1px;
+}
+
+.border-style-solid {
+  border-style:solid;
+  border-width: 0.9px;
+  border-color: rgba($color: #000000, $alpha: 0.15);
+}
+
+.brightness-60 {
+  filter: brightness(60%);
+}
+
+.bg-Blue-lg-30deg {
+  background: linear-gradient(30deg, #0f58b7, #62d9ff);
+  background-origin: border-box;
+}
+
+.hover-bg-blue:hover {
+  @include bg-text-gradient(30deg);
+  -webkit-text-fill-color: transparent;
+}
+
+.hover-border-solid:hover {
+  border-style: solid;
+}
+
+.hover-border-color-mixBlue:hover {
+  border-color: color-mix(in srgb, #0f58b7, #62d9ff);
+}
+
+.hover-color-white:hover{
+  color: white;
+
+}
+
+
+.color-mixBlue{
+  color: color-mix(in srgb, #0f58b7, #62d9ff);
+}
+
+.hover-bg-intensive-blue:hover {
+  background-color: #0F58B7;
+}
+
+.hover-border-color-white:hover {
+  border-color: white;
+}
+
+.hover-bg-white:hover {
+  @include bg-text-gradient(30deg);
+  -webkit-text-fill-color: transparent;
+}
+
+.text-fill-color-transparent {
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-text-gradient-blue-30 {
+  @include bg-text-gradient(30deg);
+}
+
+.bg-text-gradient-blue-20 {
+  @include bg-text-gradient(20deg);
+}
+
+.box-shadow{
+  box-shadow: 0px 1px 10px 0px rgba($color: #608099, $alpha: 0.1);
+}
+
+.padding-inline-start{
+  padding-inline-start: 0rem;
+}
+
+.img-quote{
+  width: 21px;
+  height: 21px;
+}
+
+.outline-none{
+  outline: none;
+}
+
+.color-white{
+  color: white;
+}
+
+::placeholder{
+  color: black;
+}
+
+.img-icon{
+  width: 15px;
+  height: 15px;
+}
+
+.overflow-x-clip {
+  overflow-x: clip;
+}
+.border-color-transparent {
+  border-color: transparent;
+}
+
+@include media-breakpoint-up(sm) {
+  .transform-sm {
+    transform: rotate(10deg) translateY(-356px) translateX(-126px);
+  }
+
+
+}
+
+@include media-breakpoint-up(md) {
+  .transform-md {
+    transform: rotate(10deg) translateY(-341px) translateX(-160px);
+  }
+
+  .footer-logo{
+    width:150px;
+    height: 60px;
+  }
+
+  .white-logo{
+    width:125px;
+    height: 45px;
+  }
+  .menu{
+    width:140px;
+    height: 40px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+
+}
+
+@include media-breakpoint-up(xl) {
+
+}
+
+
+
+@import "bootstrap/scss/bootstrap";
