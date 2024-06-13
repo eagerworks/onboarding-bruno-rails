@@ -16,8 +16,8 @@
       </div>
     <% end %>
     <div class="d-flex justify-content-between mb-25 mb-lg-15">
-      <a  href=<%=new_user_registration_path%> class = "fs-4 text-blue-2 text-decoration-none"> ¡Regístrate aquí!</a>
-      <a  href=<%=new_user_session_path%> class = "fs-4 text-blue-2 text-decoration-none"> Inicia sesión aquí.</a>
+      <%= link_to '¡Regístrate aquí!', new_user_registration_path, class: 'fs-4 text-blue-2 text-decoration-none' %>
+      <%= link_to 'Inicia sesión aquí', new_user_session_path, class: 'fs-4 text-blue-2 text-decoration-none' %>
     </div>
   </div>
 </div>

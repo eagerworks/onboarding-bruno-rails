@@ -19,7 +19,7 @@
           </div>
         <% end %>
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-          <a  href=<%=new_password_path(resource_name)%> class = "text-blue-2 text-decoration-none"> ¿Has olvidado tu Contraseña?</a>
+          <%= link_to '¿Has olvidado tu Contraseña?', new_password_path(resource_name), class: 'text-blue-2 text-decoration-none' %>
         <% end %>
       </div>
       <div class="actions">
