@@ -1,4 +1,16 @@
 es:
+  devise:
+    registrations:
+      signed_up: Usuario creado correctamente
+    sessions:
+      user:
+        signed_out: Sesión cerrada correctamente
+        signed_in: Usuario logeado correctamente
+    failure:
+      user:
+        unauthenticated: Debe iniciar sesión primero
+        invalid: Usuario o Contraseña incorrectos
+        not_found_in_database: Usuario o Contraseña incorrectos
   activerecord:
     errors:
       models:

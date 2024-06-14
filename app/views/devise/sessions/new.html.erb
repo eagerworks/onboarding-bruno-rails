@@ -1,0 +1,29 @@
+<div class="d-flex flex-column px-lg-15">
+  <div class="d-flex flex-column">
+    <h2 class="fw-semibold fs-8 me-15 mb-2 mt-md-7 fs-md-10 fs-xl-8 fs-lg-7 fw-md-medium mb-xl-6">¡Hola, otra vez!</h2>
+    <p class="fw-normal fs-4  fs-md-6 lh-20 fs-xl-4 fs-lg-3">Por favor, confirma tu información para ingresar a Plan IT.</p>
+  </div>
+  <div class = "mb-4 mb-lg-2" >
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= f.email_field :email, autocomplete: "email", class: "border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4",placeholder: "Email" %>
+      </div>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= f.password_field :password, autocomplete: "current-password" ,class: "border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4",placeholder: "Contraseña" %>
+      </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="field mb-15 fs-md-18">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, "Recordar mi información"%>
+        </div>
+      <% end %>
+      <div class="actions">
+        <%= f.submit "Iniciar Sesión", class: "color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3  fs-lg-4 fs-md-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex flex-column align-items-center mb-21">
+    <p class = "fs-3 fs-md- text-grey fs-xl-3 m-0"> ¿No tienes una cuenta aún?</p>
+    <%= link_to '¡Regístrate aquí!', new_user_registration_path, class: 'text-blue-2 text-decoration-none' %></p>
+</div>
+</div>

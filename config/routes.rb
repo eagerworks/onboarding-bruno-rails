@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root 'home#index'
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users,
+             controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 end

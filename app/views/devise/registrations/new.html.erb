@@ -2,7 +2,7 @@
   <div class="d-flex flex-column mb-4">
     <h2 class="fw-semibold fs-8 me-15 mb-2 mt-md-7 fs-md-10 fs-xl-8 fs-lg-7 fw-md-medium mb-xl-6">¡Bienvenido a Plan IT!</h2>
     <p class="fw-normal fs-4  fs-md-6 lh-20 fs-xl-4 fs-lg-3">Por favor, complete su información personal para crear un usuario propio.</p>
-    <p class = "fs-3 fs-md-4 text-grey fs-xl-3"> ¿Ya tenés una cuenta?<span class = "text-blue-2"> Inicia sesión aquí.</span></p>
+    <p class = "fs-3 fs-md-4 text-grey fs-xl-3"> ¿Ya tenés una cuenta? <%= link_to 'Inicia sesión aquí.', new_user_session_path, class: 'text-blue-2 text-decoration-none' %></p>
   </div>
   <div class = "mb-20 mb-lg-0" >
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
