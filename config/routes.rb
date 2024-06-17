@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root 'home#index'
+
+  resources :gifts, path: 'regalos', only: [:index]
+  resources :catering, only: [:index]
+  resources :merchandising, only: [:index]
+  resources :events, path: 'eventos', only: [:index]
+
   devise_for :users,
              controllers: { registrations: 'users/registrations', sessions: 'users/sessions',
                             passwords: 'users/passwords' }
