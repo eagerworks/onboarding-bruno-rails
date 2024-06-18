@@ -1,143 +1,145 @@
-<%= render "application/flash" %>
-<div class="d-flex justify-content-between align-items-center align-items-lg-end pt-10 pt-lg-0 px-md-10 px-xl-15 px-3 pb-3">
-  <%=image_tag("footer_logo.svg", class: "header-logo")%>
-  <div class="d-lg-flex flex-column ">
-    <div class="d-lg-flex d-none column-gap-8 pt-3 justify-content-center fs-4 fw-medium pb-3">
-      <div class = "<%= current_page?(controller: '/gifts') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
-        <%= link_to 'Regalos', gifts_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent'%>
+<div class="shadow-header rounded-header position-relative z-1">
+  <%= render "application/flash" %>
+  <div class="d-flex justify-content-between align-items-center align-items-lg-end pt-10 pt-lg-0 px-md-10 px-xl-15 px-3 pb-3">
+    <%=image_tag("footer_logo.svg", class: "header-logo")%>
+    <div class="d-lg-flex flex-column ">
+      <div class="d-lg-flex d-none column-gap-8 pt-3 justify-content-center fs-4 fw-medium pb-3">
+        <div class = "<%= current_page?(controller: '/gifts') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
+          <%= link_to 'Regalos', gifts_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent'%>
+        </div>
+        <div class = "<%= current_page?(controller: '/catering') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
+          <%= link_to 'Catering', catering_index_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
+        </div>
+        <div class = "<%= current_page?(controller: '/merchandising') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
+          <%= link_to 'Merchandising', merchandising_index_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
+        </div>
+        <div class = "<%= current_page?(controller: '/events') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
+          <%= link_to 'Eventos', events_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
+        </div>
       </div>
-      <div class = "<%= current_page?(controller: '/catering') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
-        <%= link_to 'Catering', catering_index_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
-      </div>
-      <div class = "<%= current_page?(controller: '/merchandising') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
-        <%= link_to 'Merchandising', merchandising_index_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
-      </div>
-      <div class = "<%= current_page?(controller: '/events') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
-        <%= link_to 'Eventos', events_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
-      </div>
+      <form class = "d-none d-sm-flex bg-grey rounded-pill border-style-solid border-1 box-shadow justify-content-between">
+        <div class="form-group ps-2 w-100">
+          <input type="text" class="w-100 h-100 fw-light fs-2 border-0 bg-transparent outline-none fs-md-5 fs-lg-4" id="exampleInputEmail1" placeholder="Buscar">
+        </div>
+        <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
+          <%=image_tag("Buscar.svg")%>
+        </button>
+      </form>
     </div>
-    <form class = "d-none d-sm-flex bg-grey rounded-pill border-style-solid border-1 box-shadow justify-content-between">
-      <div class="form-group ps-2 w-100">
-        <input type="text" class="w-100 h-100 fw-light fs-2 border-0 bg-transparent outline-none fs-md-5 fs-lg-4" id="exampleInputEmail1" placeholder="Buscar">
+    <button class="bg-white border-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+      <%=image_tag("black_Menu.svg")%></button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Secciones</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
-        <%=image_tag("Buscar.svg")%>
-      </button>
-    </form>
-  </div>
-  <button class="bg-white border-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-    <%=image_tag("black_Menu.svg")%></button>
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-      <h5 id="offcanvasRightLabel">Secciones</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <ul class="list-group list-unstyled">
-        <li class="pb-3">
-          <div class="d-flex justify-content-between align-items-end">
-            <div class="d-flex flex-column">
-              <p class = "bg-text-gradient-blue-20 text-fill-color-transparent mb-0
+      <div class="offcanvas-body">
+        <ul class="list-group list-unstyled">
+          <li class="pb-3">
+            <div class="d-flex justify-content-between align-items-end">
+              <div class="d-flex flex-column">
+                <p class = "bg-text-gradient-blue-20 text-fill-color-transparent mb-0
             lh-1 fs-5">1300</p>
-              <p class ="mb-0 lh-2 fw-light fs-4">Puntos</p>
+                <p class ="mb-0 lh-2 fw-light fs-4">Puntos</p>
+              </div>
+              <%= link_to 'Ver más',root_path, class: 'fw-light text-blue-2 text-decoration-none' %>
             </div>
-            <%= link_to 'Ver más',root_path, class: 'fw-light text-blue-2 text-decoration-none' %>
-          </div>
-        </li>
-        <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
-          <%= link_to 'Regalos', gifts_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
-        <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
-          <%= link_to 'Catering', catering_index_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
-        <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
-          <%= link_to 'Merchandising', merchandising_index_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
-        <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
-          <%= link_to 'Eventos', events_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
-        <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
-          <%= link_to 'Cuenta', edit_user_registration_path, class:'fw-light text-black text-decoration-none' %></li>
-        <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Favoritos', root_path, class:'fw-light text-reset text-decoration-none' %></li>
-        <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Pedidos y consultas', root_path, class:'fw-light text-reset text-decoration-none' %></li>
-        <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Campañas y metricas', root_path, class:' fw-light text-reset text-decoration-none' %></li>
-        <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Ayuda', root_path, class:'fw-light text-grey text-decoration-none' %></li>
-        <li class="py-3 border-top-solid border-top-1 border-grey"> <%= link_to 'Cerrar sesion', destroy_user_session_path, data:{ turbo_method: "delete" }, class:'fw-light text-grey text-decoration-none' %></li>
-      </ul>
-    </div>
-  </div>
-  <div class="d-lg-flex d-none align-items-center" data-controller = "header" data-header-rotate-class="rotate-180" data-header-hide-class="d-none">
-    <div class="position-relative dropdown" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-      <button class = "d-flex  bg-white border-0 p-0" data-action="click->header#hide">
-        <%=image_tag("campana.svg")%>
-      </button>
-      <div data-header-target="circle">
-        <%=image_tag("notificacion.svg", class: "position-absolute top-0 start-50")%>
+          </li>
+          <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
+            <%= link_to 'Regalos', gifts_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
+          <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
+            <%= link_to 'Catering', catering_index_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
+          <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
+            <%= link_to 'Merchandising', merchandising_index_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
+          <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
+            <%= link_to 'Eventos', events_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
+          <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
+            <%= link_to 'Cuenta', edit_user_registration_path, class:'fw-light text-black text-decoration-none' %></li>
+          <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Favoritos', root_path, class:'fw-light text-reset text-decoration-none' %></li>
+          <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Pedidos y consultas', root_path, class:'fw-light text-reset text-decoration-none' %></li>
+          <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Campañas y metricas', root_path, class:' fw-light text-reset text-decoration-none' %></li>
+          <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Ayuda', root_path, class:'fw-light text-grey text-decoration-none' %></li>
+          <li class="py-3 border-top-solid border-top-1 border-grey"> <%= link_to 'Cerrar sesion', destroy_user_session_path, data:{ turbo_method: "delete" }, class:'fw-light text-grey text-decoration-none' %></li>
+        </ul>
       </div>
-      <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="dropdownMenuButton2">
-        <li class='dropdown-item fw-light'>
-          <div class="d-flex aling-items-center column-gap-2 py-1">
-            <%=image_tag("icon.svg", width: "18px", heigth: "18px" )%>
-            <div class="d-felx flex-column lh-2 fw-200">
-              <p class="m-0">Soledad Martinez</p>
-              <p class="m-0">canjeó su código!</p>
-            </div>
-          </div>
-        </li>
-        <li class='dropdown-item fw-light'>
-          <div class="d-flex aling-items-center column-gap-2 py-1 border-top-solid border-top-1 border-grey">
-            <%=image_tag("icon.svg", width: "18px", heigth: "18px" )%>
-            <div class="d-felx flex-column lh-2 fw-200">
-              <p class="m-0">Rosina Cataldo</p>
-              <p class="m-0">canjeó su código!</p>
-            </div>
-          </div>
-        </li>
-      </ul>
     </div>
-    <div class="dropdown ps-5" data-action="hidden.bs.dropdown->header#transform_remove shown.bs.dropdown->header#transform_add">
-      <button class = "d-flex  bg-white border-0"  type="buttom" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-        <div class="d-flex column-gap-2 align-items-end">
-          <%=image_tag("Usuario.svg")%>
-          <div>
-            <p class="fw-medium fs-4 lh-20 mb-0">Victoria López</p>
-            <div class="d-flex column-gap-1">
-              <p class="text-role-grey fs-3 lh-20 mb-0">HR Manager</p>
-              <div data-header-target="arrow">
-                <%=image_tag("Drop-down.svg")%>
+    <div class="d-lg-flex d-none align-items-center" data-controller = "header" data-header-rotate-class="rotate-180" data-header-hide-class="d-none">
+      <div class="position-relative dropdown" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class = "d-flex  bg-white border-0 p-0" data-action="click->header#hide">
+          <%=image_tag("campana.svg")%>
+        </button>
+        <div data-header-target="circle">
+          <%=image_tag("notificacion.svg", class: "position-absolute top-0 start-50")%>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="dropdownMenuButton2">
+          <li class='dropdown-item fw-light'>
+            <div class="d-flex aling-items-center column-gap-2 py-1">
+              <%=image_tag("icon.svg", width: "18px", heigth: "18px" )%>
+              <div class="d-felx flex-column lh-2 fw-200">
+                <p class="m-0">Soledad Martinez</p>
+                <p class="m-0">canjeó su código!</p>
+              </div>
+            </div>
+          </li>
+          <li class='dropdown-item fw-light'>
+            <div class="d-flex aling-items-center column-gap-2 py-1 border-top-solid border-top-1 border-grey">
+              <%=image_tag("icon.svg", width: "18px", heigth: "18px" )%>
+              <div class="d-felx flex-column lh-2 fw-200">
+                <p class="m-0">Rosina Cataldo</p>
+                <p class="m-0">canjeó su código!</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="dropdown ps-5" data-action="hidden.bs.dropdown->header#transform_remove shown.bs.dropdown->header#transform_add">
+        <button class = "d-flex  bg-white border-0"  type="buttom" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <div class="d-flex column-gap-2 align-items-end">
+            <%=image_tag("Usuario.svg")%>
+            <div>
+              <p class="fw-medium fs-4 lh-20 mb-0">Victoria López</p>
+              <div class="d-flex column-gap-1">
+                <p class="text-role-grey fs-3 lh-20 mb-0">HR Manager</p>
+                <div data-header-target="arrow">
+                  <%=image_tag("Drop-down.svg")%>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </button>
-      <ul class="dropdown-menu px-3 " aria-labelledby="dropdownMenuButton1">
-        <li class="py-1">
-          <div class="d-flex justify-content-between align-items-end">
-            <div class="d-flex flex-column">
-              <p class = "bg-text-gradient-blue-20 text-fill-color-transparent mb-0
+        </button>
+        <ul class="dropdown-menu px-3 " aria-labelledby="dropdownMenuButton1">
+          <li class="py-1">
+            <div class="d-flex justify-content-between align-items-end">
+              <div class="d-flex flex-column">
+                <p class = "bg-text-gradient-blue-20 text-fill-color-transparent mb-0
             lh-1 fs-5">1300</p>
-              <p class ="mb-0 lh-2 fw-light fs-4">Puntos</p>
+                <p class ="mb-0 lh-2 fw-light fs-4">Puntos</p>
+              </div>
+              <%= link_to 'Ver más',root_path, class: 'fw-light text-blue-2 text-decoration-none' %>
             </div>
-            <%= link_to 'Ver más',root_path, class: 'fw-light text-blue-2 text-decoration-none' %>
-          </div>
-        </li>
-        <li class="py-1 border-top-solid border-top-1 border-dark">
-          <%= link_to 'Cuenta', edit_user_registration_path, class:'fw-light text-black text-decoration-none' %></li>
-        <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Favoritos', root_path, class:'fw-light text-reset text-decoration-none' %></li>
-        <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Pedidos y consultas', root_path, class:'fw-light text-reset text-decoration-none' %></li>
-        <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Campañas y metricas', root_path, class:' fw-light text-reset text-decoration-none' %></li>
-        <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Ayuda', root_path, class:'fw-light text-grey text-decoration-none' %></li>
-        <li class="py-1 border-top-solid border-top-1 border-grey"> <%= link_to 'Cerrar sesion', destroy_user_session_path, data:{ turbo_method: "delete" }, class:'fw-light text-grey text-decoration-none' %></li>
-      </ul>
+          </li>
+          <li class="py-1 border-top-solid border-top-1 border-dark">
+            <%= link_to 'Cuenta', edit_user_registration_path, class:'fw-light text-black text-decoration-none' %></li>
+          <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Favoritos', root_path, class:'fw-light text-reset text-decoration-none' %></li>
+          <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Pedidos y consultas', root_path, class:'fw-light text-reset text-decoration-none' %></li>
+          <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Campañas y metricas', root_path, class:' fw-light text-reset text-decoration-none' %></li>
+          <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Ayuda', root_path, class:'fw-light text-grey text-decoration-none' %></li>
+          <li class="py-1 border-top-solid border-top-1 border-grey"> <%= link_to 'Cerrar sesion', destroy_user_session_path, data:{ turbo_method: "delete" }, class:'fw-light text-grey text-decoration-none' %></li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
-<div class="d-flex flex-column d-sm-none px-3">
-  <form class = "d-flex bg-grey rounded-pill border-style-solid border-1 box-shadow justify-content-between">
-    <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
-      <%=image_tag("Buscar.svg")%>
-    </button>
-    <div class="form-group ps-2 w-100">
-      <input type="text" class="w-100 h-100 fw-light fs-3 border-0 bg-transparent outline-none" id="exampleInputEmail1" placeholder="Buscar">
-    </div>
-    <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
-      <%=image_tag("Filtros.svg")%>
-    </button>
-  </form>
+  <div class="d-flex flex-column d-sm-none px-3 pb-3">
+    <form class = "d-flex bg-grey rounded-pill border-style-solid border-1 box-shadow justify-content-between">
+      <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
+        <%=image_tag("Buscar.svg")%>
+      </button>
+      <div class="form-group ps-2 w-100">
+        <input type="text" class="w-100 h-100 fw-light fs-3 border-0 bg-transparent outline-none" id="exampleInputEmail1" placeholder="Buscar">
+      </div>
+      <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
+        <%=image_tag("Filtros.svg")%>
+      </button>
+    </form>
+  </div>
 </div>

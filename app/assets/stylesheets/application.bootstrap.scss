@@ -324,12 +324,26 @@ $utilities: map-merge(
   border-color: transparent;
 }
 
+.shadow-header {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);;
+}
+
+.rounded-header {
+  border-radius: 0.375rem
+}
+
 @include media-breakpoint-up(sm) {
   .transform-sm {
     transform: rotate(10deg) translateY(-356px) translateX(-126px);
   }
 
+  .rounded-header {
+    border-radius:0px
+  }
 
+  .shadow-header {
+    box-shadow: none;
+  }
 }
 
 @include media-breakpoint-up(md) {
