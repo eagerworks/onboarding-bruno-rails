@@ -54,7 +54,7 @@
           <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
             <%= link_to 'Eventos', events_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
           <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
-            <%= link_to 'Cuenta', edit_user_registration_path, class:'fw-light text-black text-decoration-none' %></li>
+            <%= link_to 'Cuenta', users_show_path, class:'fw-light text-black text-decoration-none' %></li>
           <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Favoritos', root_path, class:'fw-light text-reset text-decoration-none' %></li>
           <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Pedidos y consultas', root_path, class:'fw-light text-reset text-decoration-none' %></li>
           <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Campañas y metricas', root_path, class:' fw-light text-reset text-decoration-none' %></li>
@@ -119,7 +119,7 @@
             </div>
           </li>
           <li class="py-1 border-top-solid border-top-1 border-dark">
-            <%= link_to 'Cuenta', edit_user_registration_path, class:'fw-light text-black text-decoration-none' %></li>
+            <%= link_to 'Cuenta', users_show_path, class:'fw-light text-black text-decoration-none' %></li>
           <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Favoritos', root_path, class:'fw-light text-reset text-decoration-none' %></li>
           <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Pedidos y consultas', root_path, class:'fw-light text-reset text-decoration-none' %></li>
           <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Campañas y metricas', root_path, class:' fw-light text-reset text-decoration-none' %></li>
@@ -135,7 +135,7 @@
         <%=image_tag("Buscar.svg")%>
       </button>
       <div class="form-group ps-2 w-100">
-        <input type="text" class="w-100 h-100 fw-light fs-3 border-0 bg-transparent outline-none" id="exampleInputEmail1" placeholder="Buscar">
+        <input type="text" class="w-100 h-100 fw-light fs-3 border-0 bg-transparent outline-none" id="exampleInputEmail2" placeholder="Buscar">
       </div>
       <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
         <%=image_tag("Filtros.svg")%>

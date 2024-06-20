@@ -1,0 +1,10 @@
+<p class = "fs-4 fs-md-6 fw-medium pb-3 pb-lg-1">Información personal</p>
+<div class="d-flex flex-column flex-lg-row justify-content-lg-between px-lg-15 bg-lg-white py-lg-8">
+  <div class="w-lg-40">
+    <%=render "application/data_user",user: @user,disable: true%>
+  </div>
+  <div class="mt-7 d-flex flex-column fs-2 fs-md-5 fs-lg-4 align-items-lg-end">
+    <%= link_to 'Editar información',edit_user_registration_path, class: 'fw-light text-blue-2 text-decoration-none mb-3' %>
+    <%= button_to "Cerrar cuenta", registration_path(@user), data: { confirm: "¿estás seguro?", turbo_confirm: "¿estás seguro?" }, method: :delete,  class: 'fw-light text-blue-2 text-decoration-none bg-lg-white bg-transparent border-0 p-0' %>
+  </div>
+</div>

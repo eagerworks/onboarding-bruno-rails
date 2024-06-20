@@ -66,6 +66,13 @@ $utilities: map-merge(
         map-get($utilities, "width"),
         (
           responsive: true,
+          values:
+          map-merge(
+            map-get(map-get($utilities, "width"), "values"),
+            (
+              40: 40%,
+            )
+          ),
         )
       ),
 
@@ -168,6 +175,7 @@ $utilities: map-merge(
      "background-color": (
       property: background,
       class: bg,
+      responsive: true,
       values: (
         skyblue: #f2f7ff,
         white: white,
@@ -367,6 +375,9 @@ $utilities: map-merge(
 }
 
 @include media-breakpoint-up(lg) {
+  .w-lg-40 {
+    width: 40%
+  }
 
 }
 
