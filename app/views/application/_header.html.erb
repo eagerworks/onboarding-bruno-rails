@@ -63,12 +63,12 @@
         </ul>
       </div>
     </div>
-    <div class="d-lg-flex d-none align-items-center" data-controller = "header" data-header-rotate-class="rotate-180" data-header-hide-class="d-none">
+    <div class="d-lg-flex d-none align-items-center" data-controller = "dropDown notification" data-dropDown-rotate-class="rotate-180" data-notification-hide-class="d-none">
       <div class="position-relative dropdown" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-        <button class = "d-flex  bg-white border-0 p-0" data-action="click->header#hide">
+        <button class = "d-flex  bg-white border-0 p-0" data-action="click->notification#hide">
           <%=image_tag("campana.svg")%>
         </button>
-        <div data-header-target="circle">
+        <div data-notification-target="circle">
           <%=image_tag("notificacion.svg", class: "position-absolute top-0 start-50")%>
         </div>
         <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="dropdownMenuButton2">
@@ -92,7 +92,7 @@
           </li>
         </ul>
       </div>
-      <div class="dropdown ps-5" data-action="hidden.bs.dropdown->header#transform_remove shown.bs.dropdown->header#transform_add">
+      <div class="dropdown ps-5" data-action="hidden.bs.dropdown->dropDown#transformRemove shown.bs.dropdown->dropDown#transformAdd">
         <button class = "d-flex  bg-white border-0"  type="buttom" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
           <div class="d-flex column-gap-2 align-items-end">
             <%=image_tag("Usuario.svg")%>
@@ -100,7 +100,7 @@
               <p class="fw-medium fs-4 lh-20 mb-0">Victoria López</p>
               <div class="d-flex column-gap-1">
                 <p class="text-role-grey fs-3 lh-20 mb-0">HR Manager</p>
-                <div data-header-target="arrow">
+                <div data-dropDown-target="arrow">
                   <%=image_tag("Drop-down.svg")%>
                 </div>
               </div>
