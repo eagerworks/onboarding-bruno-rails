@@ -1,0 +1,28 @@
+<div class="d-flex flex-column px-lg-13 mb-lg-11">
+  <div class="mb-8 d-flex flex-column">
+    <h2 class="fw-semibold fs-8  mb-2  mt-md-7 fs-md-10 fs-xl-8 fs-lg-7 fw-md-medium mb-xl-6">Cambia tu contraseña</h2>
+    <p class="fw-normal fs-4  fs-md-6 lh-20 fs-xl-4 fs-lg-3">Debe contener <%= @minimum_password_length %> caracteres como minimo.</p>
+  </div>
+  <div class = "mb-22 mb-lg-2" >
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%if not resource.errors.include?(:password)
+          resource.errors.full_messages_for(:password_confirmation).each do |message| %>
+        <p class= "text-danger"><%= message%></p>
+      <%end
+        end %>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= f.password_field :password, autocomplete: "new-password", class: "border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4",placeholder: "Nueva contraseña" %>
+        <% resource.errors.full_messages_for(:password).each do |message| %>
+          <p class= "text-danger"><%= message%></p>
+        <% end %>
+      </div>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class: "border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4",placeholder: "Confirmar nueva contraseña" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Cambiar mi contraseña", class: "color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3  fs-lg-4 fs-md-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100" %>
+      </div>
+    <% end %>
+  </div>
+</div>

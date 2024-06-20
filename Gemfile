@@ -70,6 +70,8 @@ group :development do
   gem 'rails_best_practices'
   gem 'reek'
   gem 'rubocop'
+
+  gem 'letter_opener'
 end
 
 group :test do

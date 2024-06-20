@@ -1,5 +1,9 @@
 es:
   devise:
+    passwords:
+      user:
+        updated: La contraseña se ha actualizado correctamente
+        send_instructions: Se ha enviado el correo con las intrucciones para cambiar la contraseña
     registrations:
       signed_up: Usuario creado correctamente
     sessions:
@@ -17,6 +21,7 @@ es:
         user:
           attributes:
             email:
+              not_found: No se ha encontrado una cuenta asociada a ese mail
               taken: Ya existe una cuenta asociada a ese email
             password:
               too_short: La contraseña debe tener al menos 6 caracteres.
@@ -129,7 +134,7 @@ es:
     messages:
       accepted: debe ser aceptado
       blank: Este campo no puede estar vacio
-      confirmation: no coincide
+      confirmation: Los campos no coinciden
       empty: no puede estar vacío
       equal_to: debe ser igual a %{count}
       even: debe ser par

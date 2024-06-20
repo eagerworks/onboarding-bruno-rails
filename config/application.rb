@@ -25,5 +25,10 @@ module Planit
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.default_locale = :es
     config.active_model.i18n_customize_full_message = true
+
+    config.to_prepare do
+      # configure mailer layout
+      Devise::Mailer.layout 'mailer'
+    end
   end
 end
