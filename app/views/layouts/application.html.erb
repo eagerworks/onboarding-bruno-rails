@@ -11,8 +11,10 @@
   </head>
   <body>
     <div class= "min-vh-100 d-flex flex-column">
-      <%= render 'application/header' %>
-      <div class="bg-grey px-3 px-lg-18 px-md-10 pt-9 px-sm-7 flex-grow-1 d-flex flex-column justify-content-between">
+      <div class="fixed-top bg-white">
+        <%=render "application/header"%>
+      </div>
+      <div class="bg-grey pt-22 pt-sm-21 px-md-10 px-xl-15 px-3 flex-grow-1 d-flex flex-column justify-content-between">
         <div class="mb-21 mb-lg-0">
           <%= yield %>
         </div>
@@ -24,7 +26,8 @@
             <%= image_tag('Linkedin-web.svg', width:"23px", heigth:'23px') %>
           </div>
         </div>
-        <%=render 'application/footer'%>
+        <%= render "application/chat_helper" %>
+        <%=render "application/footer"%>
       </div>
     </div>
   </body>

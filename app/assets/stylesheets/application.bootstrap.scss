@@ -253,6 +253,10 @@ $utilities: map-merge(
   border-style: solid;
 }
 
+.hover-border-grey:hover {
+  border-color: #7D7D7D;
+}
+
 .hover-border-color-mixBlue:hover {
   border-color: color-mix(in srgb, #0f58b7, #62d9ff);
 }
