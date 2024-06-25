@@ -1,6 +1,6 @@
 <% flash.each do |type, message| %>
   <div class= "z-1 position-absolute alert alert-dismissible fade show m-2 <%= type == 'alert' ? 'alert-danger' : 'alert-success'%>" role="alert">
-    <%=raw(message) %>
+    <%= raw(message) %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>

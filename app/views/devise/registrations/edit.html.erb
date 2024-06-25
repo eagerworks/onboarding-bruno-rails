@@ -1,7 +1,7 @@
 <p class = "fs-4 fs-md-6 fw-medium pb-3 pb-lg-1">Información personal</p>
 <div class="d-flex flex-column flex-lg-row justify-content-lg-between px-lg-15 bg-lg-white py-lg-6">
   <div class="w-lg-50">
-    <%=render "application/data_user", user: resource, disable: false%>
+    <%= render 'application/data_user', user: resource, disable: false %>
   </div>
-  <%= link_to "Volver",users_show_path , class: 'fw-light text-blue-2 text-decoration-none mb-3 fs-2 fs-md-5 '  %>
+  <%= link_to 'Volver', users_show_path, class: 'fw-light text-blue-2 text-decoration-none mb-3 fs-2 fs-md-5' %>
 </div>
