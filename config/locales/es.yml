@@ -5,7 +5,9 @@ es:
         updated: La contraseña se ha actualizado correctamente
         send_instructions: Se ha enviado el correo con las intrucciones para cambiar la contraseña
     registrations:
+      destroyed: Usuario eliminado correctamente
       signed_up: Usuario creado correctamente
+      updated: Usuario actualizado correctamente
     sessions:
       user:
         signed_out: Sesión cerrada correctamente
@@ -130,6 +132,9 @@ es:
       month: Mes
       year: Año
   errors:
+    attributes:
+      current_password:
+        invalid: La contraseña no es correcta
     format: "%{message}"
     messages:
       accepted: debe ser aceptado

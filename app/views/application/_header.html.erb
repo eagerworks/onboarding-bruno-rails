@@ -1,11 +1,11 @@
 <div class="shadow-header rounded-header position-relative z-1">
-  <%= render "application/flash" %>
+  <%= render 'application/flash' %>
   <div class="d-flex justify-content-between align-items-center align-items-lg-end pt-10 pt-lg-0 px-md-10 px-xl-15 px-3 pb-3">
-    <%=image_tag("footer_logo.svg", class: "header-logo")%>
+    <%= image_tag('footer_logo.svg', class: 'header-logo') %>
     <div class="d-lg-flex flex-column ">
       <div class="d-lg-flex d-none column-gap-8 pt-3 justify-content-center fs-4 fw-medium pb-3">
         <div class = "<%= current_page?(controller: '/gifts') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
-          <%= link_to 'Regalos', gifts_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent'%>
+          <%= link_to 'Regalos', gifts_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
         </div>
         <div class = "<%= current_page?(controller: '/catering') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
           <%= link_to 'Catering', catering_index_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
@@ -22,12 +22,12 @@
           <input type="text" class="w-100 h-100 fw-light fs-2 border-0 bg-transparent outline-none fs-md-5 fs-lg-4" id="exampleInputEmail1" placeholder="Buscar">
         </div>
         <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
-          <%=image_tag("Buscar.svg")%>
+          <%= image_tag("Buscar.svg") %>
         </button>
       </form>
     </div>
     <button class="bg-white border-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-      <%=image_tag("black_Menu.svg")%></button>
+      <%= image_tag("black_Menu.svg") %></button>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
         <h5 id="offcanvasRightLabel">Secciones</h5>
@@ -54,7 +54,7 @@
           <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
             <%= link_to 'Eventos', events_path, class:'bg-text-gradient-blue-20 text-fill-color-transparent' %></li>
           <li class="list-group-item-action py-3 border-top-solid border-top-1 border-dark">
-            <%= link_to 'Cuenta', edit_user_registration_path, class:'fw-light text-black text-decoration-none' %></li>
+            <%= link_to 'Cuenta', users_show_path, class:'fw-light text-black text-decoration-none' %></li>
           <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Favoritos', root_path, class:'fw-light text-reset text-decoration-none' %></li>
           <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Pedidos y consultas', root_path, class:'fw-light text-reset text-decoration-none' %></li>
           <li class="py-3 border-top-solid border-top-1 border-dark"> <%= link_to 'Campañas y metricas', root_path, class:' fw-light text-reset text-decoration-none' %></li>
@@ -119,7 +119,7 @@
             </div>
           </li>
           <li class="py-1 border-top-solid border-top-1 border-dark">
-            <%= link_to 'Cuenta', edit_user_registration_path, class:'fw-light text-black text-decoration-none' %></li>
+            <%= link_to 'Cuenta', users_show_path, class:'fw-light text-black text-decoration-none' %></li>
           <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Favoritos', root_path, class:'fw-light text-reset text-decoration-none' %></li>
           <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Pedidos y consultas', root_path, class:'fw-light text-reset text-decoration-none' %></li>
           <li class="py-1 border-top-solid border-top-1 border-dark"> <%= link_to 'Campañas y metricas', root_path, class:' fw-light text-reset text-decoration-none' %></li>
@@ -135,7 +135,7 @@
         <%=image_tag("Buscar.svg")%>
       </button>
       <div class="form-group ps-2 w-100">
-        <input type="text" class="w-100 h-100 fw-light fs-3 border-0 bg-transparent outline-none" id="exampleInputEmail1" placeholder="Buscar">
+        <input type="text" class="w-100 h-100 fw-light fs-3 border-0 bg-transparent outline-none" id="exampleInputEmail2" placeholder="Buscar">
       </div>
       <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
         <%=image_tag("Filtros.svg")%>

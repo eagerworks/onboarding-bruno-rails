@@ -7,37 +7,37 @@
   <div class = "mb-20 mb-lg-0" >
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div class="field mb-lg-5 mb-6 mb-md-8">
-        <%= f.text_field :name, autocomplete: "name", class: "border-0 border-bottom-solid outline-none text-black w-100  fs-md-6 fs-lg-4",placeholder: "Nombre" %>
+        <%= f.text_field :name, autocomplete: 'name', class: 'border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4', placeholder: 'Nombre' %>
         <% resource.errors.full_messages_for(:name).each do |message| %>
-          <p class= "text-danger"><%= message%></p>
+          <p class= "text-danger"><%= message %></p>
         <% end %>
       </div>
       <div class="field mb-lg-5 mb-6 mb-md-8">
-        <%= f.text_field :last_name, autocomplete: "name", class: "border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4",placeholder: "Apellido" %>
+        <%= f.text_field :last_name, autocomplete: 'name', class: 'border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4', placeholder: 'Apellido' %>
         <% resource.errors.full_messages_for(:last_name).each do |message| %>
-          <p class= "text-danger"><%= message%></p>
+          <p class= "text-danger"><%= message %></p>
         <% end %>
       </div>
       <div class="field mb-lg-5 mb-6 mb-md-8">
-        <%= f.email_field :email, autocomplete: "email", class: "border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4",placeholder: "Email" %>
+        <%= f.email_field :email, autocomplete: 'email', class: 'border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4', placeholder: 'Email' %>
         <% resource.errors.full_messages_for(:email).each do |message| %>
-          <p class= "text-danger"><%= message%></p>
+          <p class= "text-danger"><%= message %></p>
         <% end %>
       </div>
       <div class="field mb-lg-5 mb-6 mb-md-8">
-        <%= f.password_field :password,class: "border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4",placeholder: "Contraseña" %>
+        <%= f.password_field :password,class: 'border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4', placeholder: 'Contraseña' %>
         <% resource.errors.full_messages_for(:password).each do |message| %>
-          <p class= "text-danger"><%= message%></p>
+          <p class= "text-danger"><%= message %></p>
         <% end %>
       </div>
       <div class="field mb-lg-8 mb-10 mb-md-12 mb-xl-12">
-        <%= f.text_field :company_name, autocomplete: "name",class: "border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4",placeholder: "Nombre de su empresa" %>
+        <%= f.text_field :company_name, autocomplete: "name", class: 'border-0 border-bottom-solid outline-none text-black w-100 fs-md-6 fs-lg-4', placeholder: 'Nombre de su empresa' %>
         <% resource.errors.full_messages_for(:company_name).each do |message| %>
-          <p class= "text-danger"><%= message%></p>
+          <p class= "text-danger"><%= message %></p>
         <% end %>
       </div>
       <div class="actions">
-        <%= f.submit "Registrarse", class: "color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3  fs-lg-4 fs-md-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100" %>
+        <%= f.submit 'Registrarse', class: 'color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3 fs-lg-4 fs-md-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100' %>
       </div>
     <% end %>
   </div>

@@ -1,0 +1,65 @@
+<%= form_for(user, url: registration_path(user), html: { method: :put }) do |f| %>
+  <div class="field mb-3">
+    <div class="d-flex">
+      <%= f.label "Email", class:"mb-0 fs-1 fs-md-3 fw-light fs-lg-1" %>
+      <% user.errors.full_messages_for(:email).each do |message| %>
+        <p class= "ps-3 mb-0 fs-1 fw-light fs-md-3 fs-lg-1 text-danger p-0 m-0"><%= message %></p>
+      <% end %>
+    </div>
+    <%= f.email_field :email,disabled: disable, class: 'text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-md-5 fs-lg-3  bg-transparent' %>
+  </div>
+  <div class="field mb-3">
+    <div class="d-flex">
+      <%= f.label 'Nombre', class: 'mb-0 fs-1 fw-light fs-md-3 fs-lg-1' %>
+      <% user.errors.full_messages_for(:name).each do |message| %>
+        <p class= "ps-3 mb-0 fs-1 fw-light fs-md-3 fs-lg-1 text-danger"><%= message %></p>
+      <% end %>
+    </div>
+    <%= f.text_field :name, disabled: disable, class: 'text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-md-5 fs-lg-3 bg-transparent' %>
+  </div>
+  <div class="field mb-3">
+    <div class="d-flex">
+      <%= f.label "Apellido", class: 'b-0 fs-1 fw-light fs-md-3 fs-lg-1' %>
+      <% user.errors.full_messages_for(:last_name).each do |message| %>
+        <p class= "ps-3 mb-0 fs-1 fw-light fs-md-3 fs-lg-1 text-danger"><%= message %></p>
+      <% end %>
+    </div>
+    <%= f.text_field :last_name,disabled: disable, class: 'text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-md-5 fs-lg-3 bg-transparent' %>
+  </div>
+  <div class="field mb-3">
+    <div class="d-flex">
+      <%= f.label "Empresa", class:"mb-0 fs-1 fw-light fs-md-3 fs-lg-1" %>
+      <% user.errors.full_messages_for(:company_name).each do |message| %>
+        <p class= "ps-3 mb-0 fs-1 fw-light fs-md-3 fs-lg-1 text-danger"><%= message%></p>
+      <% end %>
+    </div>
+    <%= f.text_field :company_name,disabled: disable, class: 'text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-md-5 fs-lg-3 bg-transparent' %>
+  </div>
+  <div class="field mb-3 mb-lg-0">
+    <div class="d-flex">
+      <div class="mb-0 fs-1 fw-light fs-md-3 fs-lg-1">
+        <%= f.label 'Contraseña' %> <i><%= user.errors.empty? && (not disable) ? '(Dejala en blanco si no quieres cambiarla)' : '' %></i>
+      </div>
+      <% user.errors.full_messages_for(:password).each do |message| %>
+        <p class= "ps-3 mb-0 fs-1 fw-light fs-md-3 fs-lg-1 text-danger"><%= message %></p>
+      <% end %>
+    </div>
+    <%= f.password_field :password,disabled: disable, value: disable ? '&#8226;&#8226&#8226;' : '', class: 'text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 mb-lg-0 fs-md-5 fs-lg-3 bg-transparent' %>
+  </div>
+  <div class=" <%= disable ? 'd-none' : '' %>">
+    <div class="field mb-3 mt-lg-3">
+      <div class="d-flex">
+        <div class="mb-0 fs-1 fw-light fs-md-3 fs-lg-1">
+          <%= f.label 'Contraseña actual' %> <i><%= user.errors.empty? ? '(Ingresa tu contraseña actual para confirmar los cambios)' : '' %></i>
+        </div>
+        <% user.errors.full_messages_for(:current_password).each do |message| %>
+          <p class= "ps-3 mb-0 fs-1 fw-light fs-md-3 fs-lg-1 text-danger"><%= message %></p>
+        <% end %>
+      </div>
+      <%= f.password_field :current_password, autocomplete: 'current-password', class: 'text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 mb-4 mb-lg-0 fs-md-5 fs-lg-3 bg-transparent' %>
+    </div>
+    <div class="actions d-flex mb-12 mb-lg-0">
+      <%= f.submit 'Actualizar', class: 'color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white hover-border-solid  hover-border-color-mixBlue border-color-transparent w-100 fs-md-5 fs-lg-3' %>
+    </div>
+  </div>
+<% end %>
