@@ -6,6 +6,6 @@ class Gift < ApplicationRecord
   has_one_attached :image
 
   def image_resized
-    image.variant(resize_to_limit: [223, 223]).processed
+    image.variant(resize_to_limit: [223, 176]).processed
   end
 end

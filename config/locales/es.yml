@@ -1,4 +1,11 @@
 es:
+  views:
+    pagination:
+      first: Primera
+      last: Última
+      previous: Previa
+      next: Siguiente
+      truncate: "&hellip;"
   devise:
     passwords:
       user:
