@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AutoSubmitController from "./auto_submit_controller"
+application.register("auto-submit", AutoSubmitController)
+
 import DropDownController from "./dropDown_controller"
 application.register("dropDown", DropDownController)
 
@@ -12,3 +15,6 @@ application.register("hello", HelloController)
 
 import NotificationController from "./notification_controller"
 application.register("notification", NotificationController)
+
+import StyleLabelsController from "./style_labels_controller"
+application.register("style-labels", StyleLabelsController)

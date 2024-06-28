@@ -4,7 +4,7 @@
     <%= image_tag('footer_logo.svg', class: 'header-logo') %>
     <div class="d-lg-flex flex-column ">
       <div class="d-lg-flex d-none column-gap-8 pt-3 justify-content-center fs-4 fw-medium pb-3">
-        <div class = "<%= current_page?(controller: '/gifts') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
+        <div class = "<%= current_page?( '/regalos') || current_page?('/') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
           <%= link_to 'Regalos', gifts_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
         </div>
         <div class = "<%= current_page?(controller: '/catering') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">

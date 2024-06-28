@@ -26,6 +26,8 @@ module Planit
     config.i18n.default_locale = :es
     config.active_model.i18n_customize_full_message = true
 
+    config.autoload_paths << "#{Rails.root}/models/classes"
+
     config.to_prepare do
       # configure mailer layout
       Devise::Mailer.layout 'mailer'
