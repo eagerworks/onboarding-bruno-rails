@@ -1,12 +1,12 @@
 module Classes
   class Filter
     extend ActiveModel::Naming
-    attr_accessor :categories_ids # , :orders
+    attr_accessor :categories_ids, :order
 
-    def initialize(categories)
+    def initialize(categories, order)
       super()
       @categories_ids = categories || []
-      # @orders = orders
+      @order = order
     end
   end
 end
