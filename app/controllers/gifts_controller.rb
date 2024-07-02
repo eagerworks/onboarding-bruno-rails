@@ -1,5 +1,6 @@
 class GiftsController < ApplicationController
   before_action :classes_filter, :load_filters_and_categories, only: [:index]
+
   def index
     query_categories = if selected_categories.empty?
                          @categories.map(&:id)
