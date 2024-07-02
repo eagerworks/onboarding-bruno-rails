@@ -30,7 +30,7 @@
           </div>
           <%= image_tag("Buscar.svg", class: 'd-none d-lg-flex order-0 bg-grey p-1 rounded-pill')  %>
           <% if current_page?( '/regalos') || current_page?('/') %>
-            <%= render 'application/mobile_filters', id: 'tablet_id' %>
+            <%= render 'application/mobile_filters', id: 'tablet_id', categories: categories, filters: filters %>
           <% end %>
         </div>
       </div>
@@ -149,8 +149,8 @@
       <div class = "<%= current_page?( '/regalos') || current_page?('/') ? 'd-none' : 'border-0 bg-grey p-1 rounded-pill' %>">
         <%= image_tag("disable_filters.svg") %>
       </div>
-      <% if current_page?( '/regalos') || current_page?('/') %>
-        <%= render 'application/mobile_filters', id: 'mobile_id' %>
+      <% if categories.present? && filters.present? %>
+        <%= render 'application/mobile_filters', id: 'mobile_id', categories: categories, filters: filters %>
       <% end %>
     </div>
   </div>

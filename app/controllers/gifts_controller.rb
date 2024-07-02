@@ -1,12 +1,13 @@
 class GiftsController < ApplicationController
-  before_action :load_filters_and_categories, only: [:index]
+  before_action :classes_filter, :load_filters_and_categories, only: [:index]
   def index
-    query = Gift.with_attached_image.joins(:gift_categorizations)
-    unless selected_categories.empty?
-      query = query.where(gift_categorizations: { category_id: selected_categories })
-    end
-    query = query.order(selected_order).distinct
-    @options = query.count
+    query_categories = if selected_categories.empty?
+                         @categories.map(&:id)
+                       else
+                         selected_categories
+                       end
+    query = Gift.get_gifts_from_categories(query_categories, selected_order)
+    @query_count = query.count
     @gifts = query.page(params[:page])
   end
 
@@ -18,22 +19,14 @@ class GiftsController < ApplicationController
   end
 
   def selected_categories
-    if params[:classes_filter].nil? || params[:classes_filter][:categories_ids].nil?
-      []
-    else
-      params[:classes_filter][:categories_ids].map!(&:to_i)
-    end
+    classes_filter&.dig(:categories_ids)&.map!(&:to_i) || []
   end
 
   def selected_order
-    if params[:classes_filter].nil?
-      'name'
-    else
-      params[:classes_filter][:order]
-    end
+    classes_filter&.dig(:order) || 'name'
   end
 
-  def gift_params
-    params.require(:gift).permit(:name, :valoration, :price, :supplier_id, :image)
+  def classes_filter
+    params[:classes_filter]
   end
 end
