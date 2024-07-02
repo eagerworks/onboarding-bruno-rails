@@ -1,11 +1,11 @@
 class GiftsController < ApplicationController
   before_action :load_filters_and_categories, only: [:index]
   def index
-    query = Gift.joins(:gift_categorizations)
+    query = Gift.with_attached_image.joins(:gift_categorizations)
     unless selected_categories.empty?
       query = query.where(gift_categorizations: { category_id: selected_categories })
     end
-    query = query.order(selected_order)
+    query = query.order(selected_order).distinct
     @options = query.count
     @gifts = query.page(params[:page])
   end
