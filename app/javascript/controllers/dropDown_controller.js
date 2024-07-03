@@ -1,9 +1,9 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from '@hotwired/stimulus'
 
 // Connects to data-controller="dropDown"
 export default class extends Controller {
-  static targets = [ "arrow"]
-  static classes = [ "rotate"]
+  static targets = ['arrow']
+  static classes = ['rotate']
 
   transformAdd() {
     this.arrowTarget.classList.add(this.rotateClass)

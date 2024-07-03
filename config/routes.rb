@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root 'home#index'
+  root 'gifts#index'
 
   resources :gifts, path: 'regalos', only: [:index]
   resources :catering, only: [:index]

@@ -1,10 +1,10 @@
 <div class="shadow-header rounded-header position-relative z-1">
   <%= render 'application/flash' %>
-  <div class="d-flex justify-content-between align-items-center align-items-lg-end pt-10 pt-lg-0 px-md-10 px-xl-15 px-3 pb-3">
+  <div class="d-flex justify-content-between align-items-center align-items-lg-end pt-10 pt-lg-0 px-md-7 px-xl-15 px-3 pb-3">
     <%= image_tag('footer_logo.svg', class: 'header-logo') %>
     <div class="d-lg-flex flex-column ">
       <div class="d-lg-flex d-none column-gap-8 pt-3 justify-content-center fs-4 fw-medium pb-3">
-        <div class = "<%= current_page?(controller: '/gifts') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
+        <div class = "<%= current_page?( '/regalos') || current_page?('/') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
           <%= link_to 'Regalos', gifts_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
         </div>
         <div class = "<%= current_page?(controller: '/catering') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
@@ -17,14 +17,23 @@
           <%= link_to 'Eventos', events_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
         </div>
       </div>
-      <form class = "d-none d-sm-flex bg-grey rounded-pill border-style-solid border-1 box-shadow justify-content-between">
-        <div class="form-group ps-2 w-100">
-          <input type="text" class="w-100 h-100 fw-light fs-2 border-0 bg-transparent outline-none fs-md-5 fs-lg-4" id="exampleInputEmail1" placeholder="Buscar">
+      <div class="d-sm-flex flex-column d-none">
+        <div class = "d-flex bg-grey rounded-pill border-style-solid border-1 box-shadow justify-content-between">
+          <button type="submit" class="border-0 bg-grey p-1 rounded-pill d-lg-none">
+            <%= image_tag("Buscar.svg") %>
+          </button>
+          <div class="form-group ps-2 w-100">
+            <input type="text" class="w-100 h-100 fw-light fs-3 border-0 bg-transparent outline-none" id="exampleInputEmail2" placeholder="Buscar">
+          </div>
+          <div class = "<%= current_page?( '/regalos') || current_page?('/') ? 'd-none' : 'border-0 bg-grey p-1 rounded-pill d-lg-none' %>">
+            <%= image_tag("disable_filters.svg") %>
+          </div>
+          <%= image_tag("Buscar.svg", class: 'd-none d-lg-flex order-0 bg-grey p-1 rounded-pill')  %>
+          <% if current_page?( '/regalos') || current_page?('/') %>
+            <%= render 'application/mobile_filters', id: 'tablet_id', categories: categories, filters: filters %>
+          <% end %>
         </div>
-        <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
-          <%= image_tag("Buscar.svg") %>
-        </button>
-      </form>
+      </div>
     </div>
     <button class="bg-white border-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
       <%= image_tag("black_Menu.svg") %></button>
@@ -130,16 +139,19 @@
     </div>
   </div>
   <div class="d-flex flex-column d-sm-none px-3 pb-3">
-    <form class = "d-flex bg-grey rounded-pill border-style-solid border-1 box-shadow justify-content-between">
+    <div class = "d-flex bg-grey rounded-pill border-style-solid border-1 box-shadow justify-content-between">
       <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
-        <%=image_tag("Buscar.svg")%>
+        <%= image_tag("Buscar.svg") %>
       </button>
       <div class="form-group ps-2 w-100">
         <input type="text" class="w-100 h-100 fw-light fs-3 border-0 bg-transparent outline-none" id="exampleInputEmail2" placeholder="Buscar">
       </div>
-      <button type="submit" class="border-0 bg-grey p-1 rounded-pill">
-        <%=image_tag("Filtros.svg")%>
-      </button>
-    </form>
+      <div class = "<%= current_page?( '/regalos') || current_page?('/') ? 'd-none' : 'border-0 bg-grey p-1 rounded-pill' %>">
+        <%= image_tag("disable_filters.svg") %>
+      </div>
+      <% if categories.present? && filters.present? %>
+        <%= render 'application/mobile_filters', id: 'mobile_id', categories: categories, filters: filters %>
+      <% end %>
+    </div>
   </div>
 </div>

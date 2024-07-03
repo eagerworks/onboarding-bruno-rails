@@ -71,6 +71,7 @@ $utilities: map-merge(
             map-get(map-get($utilities, "width"), "values"),
             (
               40: 40%,
+              80: 80%,
             )
           ),
         )
@@ -177,6 +178,7 @@ $utilities: map-merge(
       class: bg,
       responsive: true,
       values: (
+        black: black,
         skyblue: #f2f7ff,
         white: white,
         linear-sky-blue:linear-gradient(46.77deg, #0f99b7 -0.79%, #69ecdc 131.52%),
@@ -253,6 +255,10 @@ $utilities: map-merge(
   border-style: solid;
 }
 
+.hover-border-grey:hover {
+  border-color: #7D7D7D;
+}
+
 .hover-border-color-mixBlue:hover {
   border-color: color-mix(in srgb, #0f58b7, #62d9ff);
 }
@@ -261,7 +267,6 @@ $utilities: map-merge(
   color: white;
 
 }
-
 
 .color-mixBlue{
   color: color-mix(in srgb, #0f58b7, #62d9ff);

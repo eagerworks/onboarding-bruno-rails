@@ -1,0 +1,29 @@
+<button class = "border-0 bg-grey p-1 rounded-pill d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#<%= id %>" aria-controls="offcanvasRight">
+  <%= image_tag("Filtros.svg") %>
+</button>
+<div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id= "<%= id %>" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasFilterLabel">Filtros</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body px-0">
+    <%= form_with model: filters, url: "/regalos", method: :get, class: 'w-100', data: {controller: 'auto-submit'} do |form| %>
+      <ul class="list-group list-unstyled">
+        <%= form.collection_check_boxes(:categories_ids, categories, :id, :name, include_hidden: false) do |b| %>
+          <li>
+            <%= b.label(class: 'btn btn-outline-dark rounded-0 w-100', data: { action: 'click->auto-submit#submit', controller: 'style-labels', style_labels_target: 'label', style_labels_background_class: 'bg-black text-white', style_labels_text_class: 'text-white' }) do %>
+              <%= b.check_box(class: 'd-none', data: { style_labels_target: 'checkBox', action: 'click->style-labels#check' }) %>
+              <%= b.text %>
+            <% end %>
+          </li>
+        <% end %>
+        <li class='d-flex justify-content-center'>
+          <div data-action='change->auto-submit#submit'>
+            <%= form.label 'Ordenar por', class: 'mb-0 fw-light' %>
+            <%= form.select(:order, [['Nombre', 'name'], ['Proveedor', 'supplier_id'], ['Precio', 'price']], {}, { class: 'bg-transparent border-0' }) %>
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>
