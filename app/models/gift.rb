@@ -5,11 +5,9 @@ class Gift < ApplicationRecord
   delegate :name, to: :supplier, prefix: true
   has_one_attached :image
 
-  scope :get_gifts_from_categories, lambda { |categories, order|
-    with_attached_image.includes(:supplier)
-                       .joins(:gift_categorizations)
-                       .where(gift_categorizations: { category_id: categories })
-                       .order(order).distinct
+  scope :with_categories, lambda { |categories|
+    joins(:gift_categorizations)
+      .where(gift_categorizations: { category_id: categories })
   }
 
   def image_resized

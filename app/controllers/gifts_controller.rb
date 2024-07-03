@@ -7,8 +7,10 @@ class GiftsController < ApplicationController
                        else
                          selected_categories
                        end
-    query = Gift.get_gifts_from_categories(query_categories, selected_order)
-    @query_count = query.count
+    query = Gift.with_categories(query_categories)
+                .with_attached_image.includes(:supplier)
+                .order(selected_order).distinct
+    @gifts_count = query.count
     @gifts = query.page(params[:page])
   end
 

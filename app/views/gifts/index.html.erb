@@ -1,10 +1,10 @@
 <div class="d-none d-sm-flex flex-column">
   <h6 class = "fs-5 fw-normal">REGALOS</h6>
   <h4 class = "fs-7 fw-medium">Food Box</h4>
-  <p class = "fs-3 text-role-grey"><%= @query_count %> resultados</p>
+  <p class = "fs-3 text-role-grey"><%= @gifts_count %> resultados</p>
 </div>
 <div class="d-sm-none d-flex justify-content-center">
-  <p class = "fs-4 text-role-grey"><%= @options %> resultados</p>
+  <p class = "fs-4 text-role-grey"><%= @gifts_count %> resultados</p>
 </div>
 <div class="d-none d-lg-flex flex-row justify-content-between border-0 border-bottom-solid pb-3">
   <%= form_with model: @filters, url: "/regalos", method: :get, class: 'd-flex justify-content-between w-100', data: {controller: 'auto-submit'} do |form| %>
