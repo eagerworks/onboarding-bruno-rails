@@ -191,6 +191,16 @@ $utilities: map-merge(
   )
 );
 
+.border-solid {
+  border-style: solid;
+  border-color: black;
+}
+.text-in-image{
+  top: 10%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
 .img-highlight{
   width: 325px;
   height: 275px;
@@ -215,6 +225,10 @@ $utilities: map-merge(
 
 .list-style-type-none{
   list-style-type: none;
+}
+
+.height-gift {
+  height: 275px;
 }
 
 .border-bottom-style-solid {
@@ -325,6 +339,16 @@ $utilities: map-merge(
   color: black;
 }
 
+.shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 3px 3px 10px 0 #000000;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+}
+
 .img-icon{
   width: 15px;
   height: 15px;
@@ -344,8 +368,16 @@ $utilities: map-merge(
 .rounded-header {
   border-radius: 0.375rem
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
 
 @include media-breakpoint-up(sm) {
+  .height-gift {
+    height: 350px;
+  }
+
   .transform-sm {
     transform: rotate(10deg) translateY(-356px) translateX(-126px);
   }
@@ -364,6 +396,10 @@ $utilities: map-merge(
     transform: rotate(10deg) translateY(-341px) translateX(-160px);
   }
 
+  .gift-img {
+    width:400px;
+    height: 250px;
+  }
   .footer-logo{
     width:150px;
     height: 60px;
@@ -382,6 +418,10 @@ $utilities: map-merge(
 @include media-breakpoint-up(lg) {
   .w-lg-40 {
     width: 40%
+  }
+  .gift-img {
+    width:600px;
+    height: 340px;
   }
 
 }

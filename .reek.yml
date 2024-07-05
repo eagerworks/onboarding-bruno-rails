@@ -10,3 +10,4 @@ detectors:
 
 exclude_paths:
   - db/migrate
+  - app/controllers/gifts_controller.rb

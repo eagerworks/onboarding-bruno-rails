@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   root 'gifts#index'
 
-  resources :gifts, path: 'regalos', only: [:index]
+  resources :gifts, path: 'regalos', only: [:index, :show]
   resources :catering, only: [:index]
   resources :merchandising, only: [:index]
   resources :events, path: 'eventos', only: [:index]
