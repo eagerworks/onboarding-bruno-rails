@@ -10,6 +10,9 @@ application.register("auto-submit", AutoSubmitController)
 import DropDownController from "./dropDown_controller"
 application.register("dropDown", DropDownController)
 
+import GiftAmountController from "./gift_amount_controller"
+application.register("gift-amount", GiftAmountController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

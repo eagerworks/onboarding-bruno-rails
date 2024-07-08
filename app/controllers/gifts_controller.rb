@@ -14,6 +14,10 @@ class GiftsController < ApplicationController
     @gifts = query.page(params[:page])
   end
 
+  def show
+    @gift = Gift.find(params[:id])
+  end
+
   private
 
   def load_filters_and_categories

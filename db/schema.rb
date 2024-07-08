@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_24_181349) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_04_145152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +58,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_181349) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customizations", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "gift_categorizations", force: :cascade do |t|
     t.bigint "gift_id", null: false
     t.bigint "category_id", null: false
@@ -55,6 +72,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_181349) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_gift_categorizations_on_category_id"
     t.index ["gift_id"], name: "index_gift_categorizations_on_gift_id"
+  end
+
+  create_table "gift_customizations", force: :cascade do |t|
+    t.bigint "gift_id", null: false
+    t.bigint "customization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customization_id"], name: "index_gift_customizations_on_customization_id"
+    t.index ["gift_id"], name: "index_gift_customizations_on_gift_id"
   end
 
   create_table "gifts", force: :cascade do |t|
@@ -92,5 +118,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_181349) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "gift_categorizations", "categories"
   add_foreign_key "gift_categorizations", "gifts"
+  add_foreign_key "gift_customizations", "customizations"
+  add_foreign_key "gift_customizations", "gifts"
   add_foreign_key "gifts", "suppliers"
 end

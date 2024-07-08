@@ -1,10 +1,10 @@
-<div class="shadow-header rounded-header position-relative z-1">
+<div class="shadow-header rounded-header position-relative z-1 <%= show_gift ? 'd-none d-md-flex' : '' %>">
   <%= render 'application/flash' %>
-  <div class="d-flex justify-content-between align-items-center align-items-lg-end pt-10 pt-lg-0 px-md-7 px-xl-15 px-3 pb-3">
+  <div class="w-100 d-flex justify-content-between align-items-center align-items-lg-end pt-10 pt-lg-0 px-md-7 px-xl-15 px-3 pb-3">
     <%= image_tag('footer_logo.svg', class: 'header-logo') %>
     <div class="d-lg-flex flex-column ">
       <div class="d-lg-flex d-none column-gap-8 pt-3 justify-content-center fs-4 fw-medium pb-3">
-        <div class = "<%= current_page?( '/regalos') || current_page?('/') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
+        <div class = "<%= request.path.start_with?('/regalos') || current_page?('/') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">
           <%= link_to 'Regalos', gifts_path, class: 'bg-text-gradient-blue-20 text-fill-color-transparent' %>
         </div>
         <div class = "<%= current_page?(controller: '/catering') ? 'border-bottom-style-solid border-1 border-blue' : '' %>">

@@ -34,6 +34,7 @@ Metrics/BlockLength:
     - config/**/*
     - spec/**/*
     - app/admin/**/*
+    - test/factories/*
 
 Metrics/BlockNesting:
   Max: 4
