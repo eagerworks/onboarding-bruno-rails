@@ -16,7 +16,6 @@ class GiftsController < ApplicationController
 
   def show
     @gift = Gift.find(params[:id])
-    # @gift = Gift.includes(:gift_products, :products).find(params[:id])
   end
 
   private

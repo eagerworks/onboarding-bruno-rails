@@ -8,7 +8,6 @@ AllCops:
     - "db/schema.rb"
     - "vendor/bundle/**/*"
     - "db/migrate/*"
-    - "test/factories/*"
 
 # Layout cops
 
@@ -35,6 +34,7 @@ Metrics/BlockLength:
     - config/**/*
     - spec/**/*
     - app/admin/**/*
+    - test/factories/*
 
 Metrics/BlockNesting:
   Max: 4

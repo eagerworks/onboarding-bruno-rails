@@ -8,6 +8,9 @@ detectors:
   InstanceVariableAssumption:
     enabled: false
 
+  TooManyInstanceVariables:
+    exclude:
+      - GiftsController
+
 exclude_paths:
   - db/migrate
-  - app/controllers/gifts_controller.rb
