@@ -33,7 +33,31 @@ es:
               not_found: No se ha encontrado una cuenta asociada a ese mail
               taken: Ya existe una cuenta asociada a ese email
             password:
-              too_short: La contraseña debe tener al menos 6 caracteres.
+              blank: La contraseña debe tener al menos 6 caracteres.
+        purchase:
+          attributes:
+            destinatios:
+              presence: "Los campos del destino deben estar todos completos"
+            personalization:
+              blank: "Ingrese un mensaje personalizado"
+            RUT:
+              blank: "Debe agregar un RUT"
+            social_reason:
+              blank: "Debe agregar una razón social"
+        destination:
+          attributes:
+            receiver:
+              blank: "Debe agregar un destinatario"
+            day:
+              blank: "Debe agregar un día para la entrega"
+            schedules:
+              blank: "Debe agregar un horario para la entrega"
+            address:
+              blank: "Debe agregar una dirección"
+            number:
+              blank: "Debe agregar un número de contacto"
+            cost:
+              blank: "Debe agregar un costo"
       messages:
         record_invalid: "La validación falló: %{errors}"
         restrict_dependent_destroy:

@@ -12,5 +12,8 @@ detectors:
     exclude:
       - GiftsController
 
+  TooManyStatements:
+    exclude:
+      - PurchaseController
 exclude_paths:
   - db/migrate

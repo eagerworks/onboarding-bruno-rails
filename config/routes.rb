@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :merchandising, only: [:index]
   resources :events, path: 'eventos', only: [:index]
 
+  resources :purchases, path: 'compras', only: [:new, :create]
   devise_for :users,
              controllers: { registrations: 'users/registrations', sessions: 'users/sessions',
                             passwords: 'users/passwords' }

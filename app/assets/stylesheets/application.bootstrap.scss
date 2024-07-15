@@ -70,6 +70,7 @@ $utilities: map-merge(
           map-merge(
             map-get(map-get($utilities, "width"), "values"),
             (
+              20: 20%,
               40: 40%,
               80: 80%,
             )
@@ -80,6 +81,13 @@ $utilities: map-merge(
       "translate-middle":
         map-merge(
           map-get($utilities, "translate-middle"),
+          (
+            responsive: true,
+          )
+        ),
+      "position":
+        map-merge(
+          map-get($utilities, "position"),
           (
             responsive: true,
           )
@@ -182,6 +190,7 @@ $utilities: map-merge(
         skyblue: #f2f7ff,
         white: white,
         linear-sky-blue:linear-gradient(46.77deg, #0f99b7 -0.79%, #69ecdc 131.52%),
+        strong-grey: #EEEEEE,
         grey: #F5F5F5,
         intensive-blue: #0f58b7,
         mix-blue: color-mix(in srgb, #0f58b7, #62d9ff),
@@ -214,6 +223,10 @@ $utilities: map-merge(
 .footer-logo{
   width:100px;
   height: 38px;
+}
+
+.form-control:focus, .form-control:active {
+  background: transparent;
 }
 
 .header-decline {
@@ -338,6 +351,13 @@ $utilities: map-merge(
 ::placeholder{
   color: black;
 }
+.grey-placeholder::placeholder {
+  color:grey
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
 
 .shadow {
   position: absolute;
@@ -374,6 +394,11 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 @include media-breakpoint-up(sm) {
+  .img-gift-purchase {
+    width: 150px;
+    height: 150px;
+  }
+
   .height-gift {
     height: 350px;
   }
@@ -423,6 +448,13 @@ input[type="number"]::-webkit-outer-spin-button {
     width:600px;
     height: 340px;
   }
+
+  .img-gift-purchase {
+    width: 100px;
+    height: 100px;
+  }
+
+
 
 }
 

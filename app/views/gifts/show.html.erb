@@ -1,10 +1,10 @@
 <% content_for :header do %>
-  <%= render 'header', show_gift: true, categories: @categories, filters: @filter  %>
+  <%= render 'header', show_mobile: false, categories: @categories, filters: @filter, is_from_gift: true  %>
 <% end %>
 <div class="d-flex flex-column position-absolute top-0 start-0 w-100 justify-content-between d-md-none">
   <div class="d-flex position-relative">
     <%= image_tag(@gift.image, class:'brightness-60 w-100 height-gift') %>
-    <%= link_to '< Volver',root_path, class: 'fw-light text-white text-decoration-none position-absolute text-in-image fs-2 fs-sm-6' %>
+    <%= link_to '< Volver', root_path, class: 'fw-light text-white text-decoration-none position-absolute text-in-image fs-2 fs-sm-6' %>
   </div>
 </div>
 <div class="d-flex px-3 px-md-0 flex-column flex-md-row mt-21 mt-sm-23 mt-md-0 justify-content-evenly">
@@ -27,33 +27,41 @@
       </div>
       <h5 class ='fw-light text-blue-2 mb-0 fs-2 fs-sm-3 fs-lg-2'>Ver Calificaciones </h5>
     </div>
-    <div class="align-items-center d-none d-md-flex mt-5 mt-lg-2" data-controller="gift-amount">
-      <button class="fs-sm-6 fs-lg-3 border-1 border-solid bg-transparent" data-action="click->gift-amount#decrease" data-gift-amount-target="decreaseButton" disabled>-</button>
-      <input type="number" data-gift-amount-target="amount" class="text-center border-1 border-start-0 border-end-0 fs-sm-6 border-solid bg-transparent fs-lg-3" value="0" min="0" max="5" data-action="onchange->gift-amount#editButtons" >
-      <button class=" fs-sm-6 border-1 border-solid bg-transparent fs-lg-3" data-action="click->gift-amount#increase" data-gift-amount-target="increaseButton" >+</button>
-    </div>
-    <div class="d-none d-md-flex flex-column mt-10 mt-lg-5">
-      <h4 class="fs-5 fw-normal fs-lg-3">Personaliza tu box </h4>
-      <% @gift.customizations.each do |custom| %>
-        <div class="form-check form-switch d-flex">
-          <input class="form-check-input shadow-none outline-none" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-          <div class="d-flex flex-column ms-3">
-            <label class="form-check-label fs-2" for="flexSwitchCheckDefault"> <%= custom.name %></label>
-            <p class="fw-light fs-1"><%= custom.price == 0 ? 'Sin costo adicional' : "$#{custom.price.to_i} adicionales"  %> </p>
+    <%= form_with url: new_purchase_path, data: {controller: "gift-price" },class: 'd-flex flex-column' ,method: :get do |form| %>
+      <%= form.hidden_field :gift_id, value: @gift.id %>
+      <div class="align-items-center d-none d-md-flex mt-5 mt-lg-2" data-controller="gift-amount">
+        <button type='button' class="fs-sm-6 fs-lg-3 border-1 border-solid bg-transparent" data-action="click->gift-amount#decrease" data-gift-amount-target="decreaseButton" disabled>-</button>
+        <%= form.number_field :amount, in: 1..5, data: {gift_amount_target: "amount" },readonly: true, class: 'text-center border-1 border-start-0 border-end-0 fs-sm-6 border-solid bg-transparent fs-lg-3', value: '1' %>
+        <button type='button' class="fs-sm-6 border-1 border-solid bg-transparent fs-lg-3" data-action="click->gift-amount#increase" data-gift-amount-target="increaseButton" >+</button>
+      </div>
+      <div class="d-none d-md-flex flex-column mt-10 mt-lg-5">
+        <h4 class="fs-5 fw-normal fs-lg-3">Personaliza tu box </h4>
+        <%= form.collection_check_boxes(:customizations_ids, @gift.customizations, :id, :name, include_hidden: false ) do |b| %>
+          <div class="form-check form-switch d-flex">
+            <%= b.check_box(class: 'form-check-input shadow-none outline-none', role: 'switch', data: {action: 'click->gift-price#modifyPrice', gift_price_customPrice_param: b.object.price }) %>
+            <div class="d-flex flex-column ms-3">
+              <%= b.label(class: 'form-check-label fs-2') do %>
+                <%= b.text %>
+              <% end %>
+              <p class="fw-light fs-1">
+                <%= b.object.price == 0 ? 'Sin costo adicional' : "$#{b.object.price.to_i} adicionales" %>
+              </p>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="d-none d-md-flex flex-column mb-7 mb-lg-3">
-      <h4 class = "fw-light text-grey fs-2 mb-0 fs-lg-1" >Necesita mas personalizacion? </h4>
-      <h5 class ='fw-light text-blue-2 mb-0 fs-2 fs-lg-1'>Hablar con un ejecutivo </h5>
-    </div>
-    <div class="d-none d-md-flex justify-content-between mb-5 mb-lg-2">
-      <h4 class = "fs-5 mb-0 fs-lg-3" >TOTAL </h4>
-      <h5 class ='mb-0 fs-5 fs-lg-3'>$<%= @gift.price %> </h5>
-    </div>
-    <%= link_to 'Comprar ahora',root_path, class: 'd-none d-md-block text-center color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white hover-border-solid  hover-border-color-mixBlue border-color-transparent text-decoration-none w-100 fw-light fs-4 mb-3 fs-lg-3' %>
-    <h5 class ='fw-light text-blue-2 mb-0 fs-2 d-none d-md-flex justify-content-center'>Imprimir presupuesto </h5>
+        <% end %>
+      </div>
+      <div class="d-none d-md-flex flex-column mb-7 mb-lg-3">
+        <h4 class = "fw-light text-grey fs-2 mb-0 fs-lg-1" >Necesita mas personalizacion? </h4>
+        <h5 class ='fw-light text-blue-2 mb-0 fs-2 fs-lg-1'>Hablar con un ejecutivo </h5>
+      </div>
+      <div class="d-none d-md-flex justify-content-between align-items-center mb-5 mb-lg-2">
+        <h4 class = "fs-5 mb-0 fs-lg-3" >TOTAL </h4>
+        <%= form.number_field :price, data: {gift_price_target: "giftPrice" }, readonly:true, class: 'mb-0 fs-5 fs-lg-3 border-0 bg-transparent text-end fw-medium pointer-events-none w-80', value: @gift.price %>
+        <%= form.label :price, '/Unidad', class: 'mb-0 fs-5 fs-lg-3 fw-medium' %>
+      </div>
+      <%= form.submit 'Comprar ahora', class: 'd-none d-md-block text-center color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white hover-border-solid  hover-border-color-mixBlue border-color-transparent text-decoration-none w-100 fw-light fs-4 mb-3 fs-lg-3'  %>
+      <h5 class ='fw-light text-blue-2 mb-0 fs-2 d-none d-md-flex justify-content-center'>Imprimir presupuesto </h5>
+    <% end %>
   </div>
   <div class="d-flex flex-column d-md-none">
     <h2 class="fs-3 fs-sm-5">Descripcion</h2>
@@ -61,14 +69,20 @@
     <div class="fs-2 fs-sm-3 fw-light mb-7">
       <%= @gift.content%>
     </div>
-    <h3 class= "fs-4 fs-sm-6 fw-medium bg-text-gradient-blue-20 text-fill-color-transparent mb-6">$ <%= @gift.price %> / Unidad </h3>
-    <div class="d-flex justify-content-between column-gap-3">
-      <div class="d-flex align-items-center" data-controller="gift-amount">
-        <button class="fs-sm-6 border-1 border-solid bg-transparent" data-action="click->gift-amount#decrease" data-gift-amount-target="decreaseButton" disabled>-</button>
-        <input type="number" data-gift-amount-target="amount" class="text-center border-1 border-start-0 border-end-0 fs-sm-6 border-solid bg-transparent" value="0" min="0" max="5" data-action="onchange->gift-amount#editButtons" >
-        <button class=" fs-sm-6 border-1 border-solid bg-transparent" data-action="click->gift-amount#increase" data-gift-amount-target="increaseButton" >+</button>
+    <%= form_with url: new_purchase_path, class: 'd-flex flex-column' ,method: :get do |form| %>
+      <%= form.hidden_field :gift_id, value: @gift.id %>
+      <div class="d-flex-flex-row bg-text-gradient-blue-20 text-fill-color-transparent">
+        <%= form.label :price, 'Por Unidad: ', class: 'fs-4 fs-sm-6 fw-medium  mb-6' %>
+        <%= form.number_field :price, class: ' border-0 fs-4 fs-sm-6 text-start fw-medium pointer-events-none bg-transparent w-20', value: @gift.price %>
       </div>
-      <%= link_to 'Comprar ahora',root_path, class: 'text-center color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white hover-border-solid  hover-border-color-mixBlue border-color-transparent text-decoration-none w-100 fw-light fs-sm-6' %>
-    </div>
+      <div class="d-flex justify-content-between column-gap-3">
+        <div class="d-flex align-items-center" data-controller="gift-amount">
+          <button type='button' class="fs-sm-6 fs-lg-3 border-1 border-solid bg-transparent" data-action="click->gift-amount#decrease" data-gift-amount-target="decreaseButton" disabled>-</button>
+          <%= form.number_field :amount, in: 1..5, data: {gift_amount_target: "amount" },readonly: true, class: 'text-center border-1 border-start-0 border-end-0 fs-sm-6 border-solid bg-transparent fs-lg-3', value: '1' %>
+          <button type='button' class="fs-sm-6 border-1 border-solid bg-transparent fs-lg-3" data-action="click->gift-amount#increase" data-gift-amount-target="increaseButton" >+</button>
+        </div>
+        <%= form.submit 'Comprar ahora', class: 'text-center color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white hover-border-solid  hover-border-color-mixBlue border-color-transparent text-decoration-none w-100 fw-light fs-sm-6' %>
+      </div>
+    <% end %>
   </div>
 </div>
