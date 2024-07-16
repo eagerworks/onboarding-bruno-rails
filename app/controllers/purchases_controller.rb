@@ -1,10 +1,6 @@
 class PurchasesController < ApplicationController
   def new
-    @purchase = Purchase.new(gift: selected_gift,
-                             payment_method: first_payment_method,
-                             amount: selected_amount,
-                             customization_ids: params[:customizations_ids],
-                             subtotal: params[:price].to_i * selected_amount)
+    @purchase = Purchase.new(purchase_params_with_defaults)
     @purchase.destinations.build
   end
 
@@ -41,5 +37,12 @@ class PurchasesController < ApplicationController
                                                                    [:receiver, :day,
                                                                     :address, :number,
                                                                     :cost, :schedules])
+  end
+
+  def purchase_params_with_defaults
+    params.permit(:amount, customization_ids: []).merge(gift: selected_gift,
+                                                        payment_method: first_payment_method,
+                                                        subtotal:
+                                                        params[:price].to_i * selected_amount)
   end
 end

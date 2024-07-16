@@ -1,5 +1,5 @@
 <% content_for :header do %>
-  <% render 'header', show_mobile: false, categories: @categories, filters: @filters, is_from_gift: true  %>
+  <% render 'header', show_mobile: false, categories: @categories, filters: @filters, selected_tab: :gifts  %>
 <% end %>
 <h3 class="fw-medium fs-6 bg-text-gradient-blue-20 text-fill-color-transparent mb-lg-3 d-none d-lg-flex">Detalles de la entrega </h3>
 <%= form_with model: @purchase do |form| %>
