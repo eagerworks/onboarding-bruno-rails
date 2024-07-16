@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root 'gifts#index'
+  resources :payment_methods, path: 'metodos-de-pago'
 
   resources :gifts, path: 'regalos', only: [:index, :show]
   resources :catering, only: [:index]

@@ -27,6 +27,18 @@ es:
   activerecord:
     errors:
       models:
+        payment_method:
+          attributes:
+            name:
+              blank: "Debe agregar un nombre"
+            owner:
+              blank: "Debe agregar un propietario"
+            card_number:
+              blank: "Debe agregar un número de tarjeta"
+            due_date:
+              blank: "Debe agregar una fecha de expiración"
+            CVV:
+              blank: "Debe agregar un CVV"
         user:
           attributes:
             email:

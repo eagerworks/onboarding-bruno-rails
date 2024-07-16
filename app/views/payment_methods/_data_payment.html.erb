@@ -1,0 +1,40 @@
+ <%= form_with model: payment_method do |form| %>
+  <div class="field mb-lg-5 mb-6 mb-md-8">
+    <%= form.label :name, 'Nombre', class:'fs-2 fw-light' %>
+    <%= form.text_field :name, disabled: disable, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4', placeholder: 'Nombre' %>
+    <% payment_method.errors.full_messages_for(:name).each do |message| %>
+      <p class= "text-danger"><%= message %></p>
+    <% end %>
+  </div>
+  <div class="field mb-lg-5 mb-6 mb-md-8">
+    <%= form.label :owner, 'Propietario', class:'fs-2 fw-light' %>
+    <%= form.text_field :owner, disabled: disable, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4' %>
+    <% payment_method.errors.full_messages_for(:owner).each do |message| %>
+      <p class= "text-danger"><%= message %></p>
+    <% end %>
+  </div>
+  <div class="field mb-lg-5 mb-6 mb-md-8">
+    <%= form.label :card_number, 'Número de tarjeta', class:'fs-2 fw-light' %>
+    <%= form.text_field :card_number, disabled: disable, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4' %>
+    <% payment_method.errors.full_messages_for(:card_number).each do |message| %>
+      <p class= "text-danger"><%= message %></p>
+    <% end %>
+  </div>
+  <div class="field mb-lg-5 mb-6 mb-md-8">
+    <%= form.label :due_date, 'Fecha de expiración', class:'fs-2 fw-light' %>
+    <%= form.date_field :due_date, disabled: disable, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4' %>
+    <% payment_method.errors.full_messages_for(:due_date).each do |message| %>
+      <p class= "text-danger"><%= message %></p>
+    <% end %>
+  </div>
+  <div class="field mb-lg-5 mb-6 mb-md-8">
+    <%= form.label :CVV, 'CVV', class:'fs-2 fw-light' %>
+    <%= form.text_field :CVV, disabled: disable, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4' %>
+    <% payment_method.errors.full_messages_for(:CVV).each do |message| %>
+      <p class = "text-danger"><%= message %></p>
+    <% end %>
+  </div>
+  <div class=" <%= disable ? 'd-none' : 'actions' %>">
+    <%= form.submit 'Actualizar', class: 'color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3 fs-lg-4 fs-md-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100' %>
+  </div>
+<% end %>

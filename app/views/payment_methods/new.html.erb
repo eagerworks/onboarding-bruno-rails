@@ -1,0 +1,49 @@
+<% content_for :header do %>
+  <% render 'header', show_mobile: true, categories: @categories, filters: @filter, selected_tab: :none  %>
+<% end %>
+<div class="px-md-6 py-md-6 d-flex justify-content-between align-items-baseline">
+  <div class="d-flex flex-column w-lg-50">
+    <h1 class= "bg-text-gradient-blue-20 text-fill-color-transparent mb-5">Nuevo método de pago</h1>
+    <%= form_with model: @payment_method do |form| %>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= form.text_field :name, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4', placeholder: 'Nombre' %>
+        <% @payment_method.errors.full_messages_for(:name).each do |message| %>
+          <p class= "text-danger"><%= message %></p>
+        <% end %>
+      </div>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= form.text_field :owner, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4', placeholder: 'Propietario' %>
+        <% @payment_method.errors.full_messages_for(:owner).each do |message| %>
+          <p class= "text-danger"><%= message %></p>
+        <% end %>
+      </div>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= form.text_field :card_number, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4', placeholder: 'Número de tarjeta' %>
+        <% @payment_method.errors.full_messages_for(:card_number).each do |message| %>
+          <p class= "text-danger"><%= message %></p>
+        <% end %>
+      </div>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= form.date_field :due_date, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4', placeholder: 'Fecha de expiración' %>
+        <% @payment_method.errors.full_messages_for(:due_date).each do |message| %>
+          <p class= "text-danger"><%= message %></p>
+        <% end %>
+      </div>
+      <div class="field mb-lg-5 mb-6 mb-md-8">
+        <%= form.text_field :CVV, class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-md-6 fs-lg-4', placeholder: 'CVV' %>
+        <% @payment_method.errors.full_messages_for(:CVV).each do |message| %>
+          <p class = "text-danger"><%= message %></p>
+        <% end %>
+      </div>
+      <div class="actions">
+        <%= form.submit 'Agregar', class: 'color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3 fs-lg-4 fs-md-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100' %>
+      </div>
+    <% end %>
+    <div class="d-flex d-md-none mt-5">
+      <%= link_to 'Volver', payment_methods_path, class: 'fw-light text-blue-2 text-decoration-none mb-0' %>
+    </div>
+  </div>
+  <div class="d-none d-md-flex">
+    <%= link_to 'Volver', payment_methods_path, class: 'fw-light text-blue-2 text-decoration-none mb-0' %>
+  </div>
+</div>

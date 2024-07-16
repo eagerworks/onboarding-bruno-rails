@@ -1,0 +1,19 @@
+<% content_for :header do %>
+  <% render 'header', show_mobile: true, categories: @categories, filters: @filter, selected_tab: :none  %>
+<% end %>
+<div class="px-md-6 py-md-6 d-flex justify-content-between align-items-baseline">
+  <div class="d-flex flex-column w-lg-50">
+    <h1 class= "bg-text-gradient-blue-20 text-fill-color-transparent mb-5">Información</h1>
+    <%= render 'data_payment', payment_method: @payment_method, disable: true%>
+    <div class="d-flex flex-column d-md-none mt-5">
+      <%= link_to 'Editar', edit_payment_method_path(@payment_method), class: 'fw-light text-blue-2 text-decoration-none mb-2' %>
+      <%= button_to 'Eliminar', payment_method_path(@payment_method), data: { confirm: "¿estás seguro?", turbo_confirm: "¿estás seguro?" }, method: :delete, class: 'fw-light text-blue-2 text-decoration-none mb-2 bg-transparent border-0 p-0' %>
+      <%= link_to 'Volver', payment_methods_path, class: 'fw-light text-blue-2 text-decoration-none mb-0' %>
+    </div>
+  </div>
+  <div class="d-none d-md-flex flex-column fs-md-5 fs-lg-3">
+    <%= link_to 'Editar', edit_payment_method_path(@payment_method), class: 'fw-light text-blue-2 text-decoration-none mb-2' %>
+    <%= button_to 'Eliminar', payment_method_path(@payment_method), data: { confirm: "¿estás seguro?", turbo_confirm: "¿estás seguro?" }, method: :delete, class: 'fw-light text-blue-2 text-decoration-none mb-2 bg-transparent border-0 p-0' %>
+    <%= link_to 'Volver', payment_methods_path, class: 'fw-light text-blue-2 text-decoration-none mb-0' %>
+  </div>
+</div>
