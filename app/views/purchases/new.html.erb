@@ -5,7 +5,7 @@
 <%= form_with model: @purchase do |form| %>
   <%= form.select :customization_ids, @purchase.customization_ids,{}, multiple: true, style: "display: none;" %>
   <%= form.hidden_field :amount, value: @purchase.amount %>
-  <div data-controller="purchase-process" data-purchase-process-hide-class='d-none' class="d-lg-flex  justify-content-between">
+  <div data-controller="purchase-process" data-purchase-process-hide-class='d-none' class="d-lg-flex  justify-content-between mb-lg-8">
     <div data-purchase-process-target= "delivery" class="me-lg-15" >
       <div class="d-flex flex-column top-0 position-lg-static position-absolute mt-md-16 mt-lg-0">
         <div class="d-md-none">
@@ -18,51 +18,31 @@
       </div>
       <div class="d-flex flex-column">
         <div class="d-flex flex-column mt-4 mt-sm-20 mt-md-22 mt-lg-0">
-          <%= form.fields_for :destinations do |destination_form| %>
-            <div class="d-flex flex-column flex-lg-row column-gap-2 column-gap-lg-4">
-              <div class="">
-                <div class="mb-5 mb-sm-6 mb-lg-2">
-                  <%= destination_form.text_field :receiver, placeholder: 'Nombre y apellido',  class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1 pe-lg-2' %>
-                  <% @purchase.errors.full_messages_for(:'destinations.receiver').each do |message| %>
-                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
-                  <% end %>
-                </div>
-                <div class="mb-5 mb-sm-6 mb-lg-2">
-                  <%= destination_form.label :day, 'Fecha de entrega', class:'text-role-grey fs-sm-5 fs-lg-3 d-lg-none' %>
-                  <%= destination_form.date_field :day, min: Date.today,  class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
-                  <% @purchase.errors.full_messages_for(:'destinations.day').each do |message| %>
-                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
-                  <% end %>
-                </div>
-                <div class="mb-5 mb-sm-6 mb-lg-2">
-                  <%= destination_form.text_field :address, placeholder: 'Dirección de entrega', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
-                  <% @purchase.errors.full_messages_for(:'destinations.address').each do |message| %>
-                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
-                  <% end %>
-                </div>
-              </div>
-              <div class="">
-                <div class="mb-5 mb-sm-6 mb-lg-2 ">
-                  <%= destination_form.text_field :number, placeholder: 'Número de contacto', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
-                  <% @purchase.errors.full_messages_for(:'destinations.number').each do |message| %>
-                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
-                  <% end %>
-                </div>
-                <div class="mb-5 mb-sm-6 mb-lg-2">
-                  <%= destination_form.text_field :schedules, placeholder: 'Horarios de entrega', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1 pe-lg-2' %>
-                  <% @purchase.errors.full_messages_for(:'destinations.schedules').each do |message| %>
-                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
-                  <% end %>
-                </div>
-                <div class="mb-5 mb-sm-6 mb-lg-2">
-                  <%= destination_form.text_field :cost, placeholder: 'Costo de envío', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
-                  <% @purchase.errors.full_messages_for(:'destinations.cost').each do |message| %>
-                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
-                  <% end %>
-                </div>
-              </div>
+          <div class="d-flex flex-column" data-controller = 'destinations'
+          data-destinations-hide-class= 'd-none'
+          data-destinations-padding-web-class= 'pt-lg-3' data-destinations-padding-mobile-class= 'pt-7' >
+            <%= form.fields_for :template, Destination.new()  do |destination_form| %>
+              <template data-destinations-target = 'template'>
+                <%= render 'data_destination', purchase: @purchase, destination_form: destination_form %>
+              </template>
+            <% end%>
+            <div data-destinations-target= 'form' class="d-flex flex-column" >
+              <%= form.fields_for :destinations  do |destination_form| %>
+                <%= render 'data_destination', purchase: @purchase, destination_form: destination_form %>
+              <% end %>
             </div>
-          <% end %>
+            <div class="d-flex">
+              <div class="d-flex justify-content-center justify-content-lg-start column-gap-1 mb-2 mb-lg-0">
+                <button type= 'button' class= 'p-0 border-0 d-flex bg-transparent' data-action="click->destinations#add">
+                  <%= image_tag('add.svg', class:'img-destinations')%>
+                </button>
+                <button type = 'button' class= 'p-0 border-0 d-flex bg-transparent' data-action="click->destinations#remove">
+                  <%= image_tag('remove.svg',  class:'img-destinations')%>
+                </button>
+              </div>
+              <p class= "fs-1 mb-0 ms-3 text-danger d-none" data-destinations-target = "errorRemove">La entrega debe tener al menos un destinatario  </p>
+            </div>
+          </div>
           <div class="form-check form-switch d-flex mb-4 my-lg-2 ">
             <%= form.check_box :suprise_delivery, class: 'form-check-input shadow-none outline-none me-3', role: 'switch'%>
             <div class="d-flex flex-column">
@@ -89,7 +69,7 @@
           </div>
           <div class="d-flex flex-column mb-7 mb-lg-0">
             <h4 class="fs-3 fs-sm-5 fw-medium mb-0">Si el envío rebota</h4>
-            <p class="fs-2 fs-sm-4 fw-light fs-lg-2">Cada re-entrega se considera un envío extra y el horario será coordinado por nuestro equipo con el destinatario.</p>
+            <p class="fs-2 fs-sm-4 fw-light fs-lg-2 mb-lg-0 mb-xl-1">Cada re-entrega se considera un envío extra y el horario será coordinado por nuestro equipo con el destinatario.</p>
             <div class="d-flex">
               <%= form.check_box :resend_delivery, class: 'me-2' %>
               <%= form.label :resend_delivery, 'Intentar reenvío a la misma dirección.', class:'fs-1 fs-sm-3 fw-light fs-lg-1' %>
