@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_04_145152) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_13_015228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_04_145152) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customizations_purchases", id: false, force: :cascade do |t|
+    t.bigint "purchase_id", null: false
+    t.bigint "customization_id", null: false
+    t.index ["customization_id", "purchase_id"], name: "idx_on_customization_id_purchase_id_a60cec465b"
+    t.index ["purchase_id", "customization_id"], name: "idx_on_purchase_id_customization_id_14cb4ef358"
+  end
+
+  create_table "destinations", force: :cascade do |t|
+    t.string "receiver"
+    t.date "day"
+    t.string "address"
+    t.string "number"
+    t.string "schedules"
+    t.string "cost"
+    t.bigint "purchase_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["purchase_id"], name: "index_destinations_on_purchase_id"
+  end
+
   create_table "gift_categorizations", force: :cascade do |t|
     t.bigint "gift_id", null: false
     t.bigint "category_id", null: false
@@ -93,6 +113,35 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_04_145152) do
     t.index ["supplier_id"], name: "index_gifts_on_supplier_id"
   end
 
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "name"
+    t.string "owner"
+    t.string "card_number"
+    t.date "due_date"
+    t.string "CVV"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payment_methods_on_user_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.string "RUT"
+    t.string "social_reason"
+    t.integer "price"
+    t.bigint "payment_method_id", null: false
+    t.bigint "gift_id", null: false
+    t.boolean "suprise_delivery"
+    t.string "personalization"
+    t.boolean "resend_delivery"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "amount"
+    t.integer "subtotal"
+    t.index ["gift_id"], name: "index_purchases_on_gift_id"
+    t.index ["payment_method_id"], name: "index_purchases_on_payment_method_id"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -116,9 +165,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_04_145152) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "customizations_purchases", "customizations"
+  add_foreign_key "customizations_purchases", "purchases"
+  add_foreign_key "destinations", "purchases"
   add_foreign_key "gift_categorizations", "categories"
   add_foreign_key "gift_categorizations", "gifts"
   add_foreign_key "gift_customizations", "customizations"
   add_foreign_key "gift_customizations", "gifts"
   add_foreign_key "gifts", "suppliers"
+  add_foreign_key "payment_methods", "users"
+  add_foreign_key "purchases", "gifts"
+  add_foreign_key "purchases", "payment_methods"
 end

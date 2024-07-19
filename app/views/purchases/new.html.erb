@@ -1,0 +1,158 @@
+<% content_for :header do %>
+  <% render 'header', show_mobile: false, categories: @categories, filters: @filters, selected_tab: :gifts  %>
+<% end %>
+<h3 class="fw-medium fs-6 bg-text-gradient-blue-20 text-fill-color-transparent mb-lg-3 d-none d-lg-flex">Detalles de la entrega </h3>
+<%= form_with model: @purchase do |form| %>
+  <%= form.select :customization_ids, @purchase.customization_ids,{}, multiple: true, style: "display: none;" %>
+  <%= form.hidden_field :amount, value: @purchase.amount %>
+  <div data-controller="purchase-process" data-purchase-process-hide-class='d-none' class="d-lg-flex  justify-content-between">
+    <div data-purchase-process-target= "delivery" class="me-lg-15" >
+      <div class="d-flex flex-column top-0 position-lg-static position-absolute mt-md-16 mt-lg-0">
+        <div class="d-md-none">
+          <%= render 'application/flash' %>
+        </div>
+        <%= link_to '< Volver', gift_path(@purchase.gift), class: 'fw-light text-black text-decoration-none fs-2 fs-sm-6 mt-7 mb-7 d-lg-none' %>
+        <h3 class="fw-medium fs-4 fs-sm-6 bg-text-gradient-blue-20 text-fill-color-transparent mb-5 d-lg-none">Detalles de la entrega </h3>
+        <h4 class='fw-medium fs-3 fs-sm-5 mt-md-3 mt-lg-0'>Destinatario</h4>
+        <h5 class= 'fs-2 fs-sm-4 fw-light me-15 me-lg-0 fs-lg-2'>Complete la información del destinario de su regalo.</h5>
+      </div>
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-column mt-4 mt-sm-20 mt-md-22 mt-lg-0">
+          <%= form.fields_for :destinations do |destination_form| %>
+            <div class="d-flex flex-column flex-lg-row column-gap-2 column-gap-lg-4">
+              <div class="">
+                <div class="mb-5 mb-sm-6 mb-lg-2">
+                  <%= destination_form.text_field :receiver, placeholder: 'Nombre y apellido',  class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1 pe-lg-2' %>
+                  <% @purchase.errors.full_messages_for(:'destinations.receiver').each do |message| %>
+                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+                  <% end %>
+                </div>
+                <div class="mb-5 mb-sm-6 mb-lg-2">
+                  <%= destination_form.label :day, 'Fecha de entrega', class:'text-role-grey fs-sm-5 fs-lg-3 d-lg-none' %>
+                  <%= destination_form.date_field :day, min: Date.today,  class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+                  <% @purchase.errors.full_messages_for(:'destinations.day').each do |message| %>
+                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+                  <% end %>
+                </div>
+                <div class="mb-5 mb-sm-6 mb-lg-2">
+                  <%= destination_form.text_field :address, placeholder: 'Dirección de entrega', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+                  <% @purchase.errors.full_messages_for(:'destinations.address').each do |message| %>
+                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="">
+                <div class="mb-5 mb-sm-6 mb-lg-2 ">
+                  <%= destination_form.text_field :number, placeholder: 'Número de contacto', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+                  <% @purchase.errors.full_messages_for(:'destinations.number').each do |message| %>
+                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+                  <% end %>
+                </div>
+                <div class="mb-5 mb-sm-6 mb-lg-2">
+                  <%= destination_form.text_field :schedules, placeholder: 'Horarios de entrega', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1 pe-lg-2' %>
+                  <% @purchase.errors.full_messages_for(:'destinations.schedules').each do |message| %>
+                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+                  <% end %>
+                </div>
+                <div class="mb-5 mb-sm-6 mb-lg-2">
+                  <%= destination_form.text_field :cost, placeholder: 'Costo de envío', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+                  <% @purchase.errors.full_messages_for(:'destinations.cost').each do |message| %>
+                    <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="form-check form-switch d-flex mb-4 my-lg-2 ">
+            <%= form.check_box :suprise_delivery, class: 'form-check-input shadow-none outline-none me-3', role: 'switch'%>
+            <div class="d-flex flex-column">
+              <%= form.label :suprise_delivery, 'Entrega sorpesa', class:'fs-2 fs-sm-4 fs-lg-2' %>
+              <p class="fs-2 text-role-grey fs-sm-4 fs-lg-1 mb-lg-0"> Si el envío no es sorpresa, podríamos contactar al destinatario de la entrega.</p>
+            </div>
+          </div>
+          <div class="d-flex flex-column mb-7 mb-lg-0">
+            <h4 class="fs-3 fs-sm-5 fw-medium mb-0">Personalización</h4>
+            <p class="fs-2 fs-sm-4 fw-light fs-lg-2 fs-lg-2">Por favor, deje el mensaje que desea que acompañe el obsequio.</p>
+            <div class="mb-5 mb-lg-2">
+              <%= form.text_area :personalization, placeholder: 'Escriba su mensaje...', class: 'border-0 outline-none text-role-grey grey-placeholder fs-1 rounded-1 w-100 fs-sm-3 fs-lg-1 bg-lg-strong-grey' %>
+              <% @purchase.errors.full_messages_for(:personalization).each do |message| %>
+                <p class= "text-danger fs-lg-1"><%= message %></p>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-none d-lg-flex mb-3">
+            <div class="d-flex flex-column me-5">
+              <%= form.label :company_logo, 'Adjuntar logo de la empresa', class:'fs-2' %>
+              <p class="text-role-grey fs-1 mb-0"> Adjuntar en formato png, sin fondo y en alta resolución.</p>
+            </div>
+            <%= form.file_field :company_logo, class: 'fs-1' %>
+          </div>
+          <div class="d-flex flex-column mb-7 mb-lg-0">
+            <h4 class="fs-3 fs-sm-5 fw-medium mb-0">Si el envío rebota</h4>
+            <p class="fs-2 fs-sm-4 fw-light fs-lg-2">Cada re-entrega se considera un envío extra y el horario será coordinado por nuestro equipo con el destinatario.</p>
+            <div class="d-flex">
+              <%= form.check_box :resend_delivery, class: 'me-2' %>
+              <%= form.label :resend_delivery, 'Intentar reenvío a la misma dirección.', class:'fs-1 fs-sm-3 fw-light fs-lg-1' %>
+            </div>
+          </div>
+          <div class="actions">
+            <button type='button' class= 'd-lg-none color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3 fs-sm-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100' data-action= "click->purchase-process#showPurchase" > Validar Compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-flex flex-column bg-lg-white px-lg-10 py-lg-4" data-purchase-process-target= "purchase">
+      <div class="d-flex flex-column top-0 position-absolute mt-md-16 mt-lg-0 position-lg-static">
+        <button type='button' data-action= "click->purchase-process#showDelivery" class="fw-light text-start fs-2 fs-sm-6 mt-6 mb-7 border-0 bg-transparent d-lg-none"> < Volver </button>
+            <h3 class="fw-medium fs-4 fs-sm-6 bg-text-gradient-blue-20 text-fill-color-transparent mb-5 d-lg-none">Resumen de compra </h3>
+            <h3 class="fw-medium fs-5 mb-3 d-none d-lg-flex">Resumen de compra </h3>
+            <div class="d-flex column-gap-3">
+              <%= image_tag(@purchase.gift.image_resized_for_purchase, class:'img-gift-purchase') %>
+              <div class="d-flex flex-column mt-3 mt-lg-0">
+                <%= form.hidden_field :gift_id, value: @purchase.gift.id %>
+                <h4 class="fs-3 fs-sm-5 fs-lg-3 mb-0 fw-normal mb-1"><%= "#{@purchase.gift.supplier_name} | #{@purchase.gift_name}" %></h4>
+                <p class="fs-2 fs-sm-4 fs-lg-1 mb-0 fw-normal">Con tarjeta personalizada</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column mt-sm-22 mt-13 mb-4 mb-lg-2 mt-md-23 mt-lg-0">
+            <h4 class="fs-3 fs-sm-5 mt-md-5 fw-medium fs-lg-2 mt-lg-3 fw-lg-normal">Método de Pago</h4>
+            <p class="fs-2 fs-sm-4 fw-light text-role-grey mb-0 fs-lg-1">Pago a través de <%= @purchase.payment_method_name %></p>
+            <%= form.hidden_field :payment_method_id, value: @purchase.payment_method.id %>
+            <p class= 'fw-light text-blue-2 text-decoration-none fs-1 fs-sm-3 fs-lg-1 mb-lg-0'> Cambiar </p>
+          </div>
+          <div class="d-flex flex-column">
+            <h4 class='fw-medium fs-3 fs-sm-5 fs-lg-2 fw-lg-normal mb-0'>Información de facturación</h4>
+            <div class="mb-5 mb-lg-2">
+              <%= form.text_field :RUT, placeholder: 'RUT', class: ' border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+              <% @purchase.errors.full_messages_for(:RUT).each do |message| %>
+                <p class= "text-danger fs-lg-1"><%= message %></p>
+              <% end %>
+            </div>
+            <div class="mb-8 mb-lg-3">
+              <%= form.text_field :social_reason, placeholder: 'Razón Social', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+              <% @purchase.errors.full_messages_for(:social_reason).each do |message| %>
+                <p class= "text-danger fs-lg-1"><%= message %></p>
+              <% end %>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <p class="fs-2 fs-sm-4 fw-light text-role-grey mb-0 fs-lg-1">Subtotal</p>
+              <%= form.text_field :subtotal, readonly:true, class: 'fs-2 fs-sm-4 fw-light mb-0 fs-lg-1 border-0 pointer-events-none text-end' %>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <p class="fs-2 fs-sm-4 fw-light text-role-grey mb-0 fs-lg-1">Costo de envío</p>
+              <p class="fs-2 fs-sm-4 fw-light mb-0 fs-lg-1">180</p>
+            </div>
+            <div class="d-flex justify-content-between mb-5 mb-lg-2">
+              <p class="fs-2 fs-sm-4 fw-light text-role-grey mb-0 fs-lg-1">IVA</p>
+              <p class="fs-2 fs-sm-4 fw-light mb-0 fs-lg-1"><%= (@purchase.subtotal * 0.22).to_i %></p>
+            </div>
+            <div class="d-flex justify-content-between mb-6 mb-lg-2">
+              <p class="fs-3 fs-sm-5 mb-0 fs-lg-2">TOTAL</p>
+              <%= form.number_field :price, readonly:true, class: 'fs-3 fs-sm-5 border-0 bg-transparent text-end fw-medium pointer-events-none fs-lg-3', value: @purchase.subtotal + (@purchase.subtotal * 0.22).to_i + 180 %>
+            </div>
+            <%= form.submit 'Comprar', class: 'text-center color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white hover-border-solid  hover-border-color-mixBlue border-color-transparent text-decoration-none w-100 fw-light fs-sm-6 fs-lg-2'  %>
+          </div>
+        </div>
+      </div>
+    <% end %>

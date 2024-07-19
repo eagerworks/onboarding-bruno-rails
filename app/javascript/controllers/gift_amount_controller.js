@@ -6,7 +6,7 @@ export default class extends Controller {
 
   editButtons() {
     switch (this.amountTarget.value) {
-      case '0':
+      case '1':
         this.decreaseButtonTarget.disabled = true
         break
       case '5':
@@ -19,7 +19,7 @@ export default class extends Controller {
   }
 
   decrease() {
-    if (this.amountTarget.value > 0) {
+    if (this.amountTarget.value > 1) {
       this.amountTarget.value --
     }
     this.editButtons()

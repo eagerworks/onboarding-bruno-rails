@@ -13,11 +13,17 @@ application.register("dropDown", DropDownController)
 import GiftAmountController from "./gift_amount_controller"
 application.register("gift-amount", GiftAmountController)
 
+import GiftPriceController from "./gift_price_controller"
+application.register("gift-price", GiftPriceController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import NotificationController from "./notification_controller"
 application.register("notification", NotificationController)
+
+import PurchaseProcessController from "./purchase_process_controller"
+application.register("purchase-process", PurchaseProcessController)
 
 import StyleLabelsController from "./style_labels_controller"
 application.register("style-labels", StyleLabelsController)
