@@ -43,6 +43,6 @@ class PurchasesController < ApplicationController
     params.permit(:amount, customization_ids: []).merge(gift: selected_gift,
                                                         payment_method: first_payment_method,
                                                         subtotal:
-                                                        params[:price].to_i * selected_amount)
+                                                 params[:price].to_i * selected_amount)
   end
 end
