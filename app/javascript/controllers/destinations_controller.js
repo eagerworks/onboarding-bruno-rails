@@ -10,11 +10,11 @@ export default class extends Controller {
     const newDestination = this.templateTarget.content.cloneNode(true)
     const inputs = newDestination.querySelectorAll('input')
     const id = this.formTarget.childElementCount
-    for (let i = 0; i < inputs.length; i++) {
-      inputs[i].setAttribute('name', inputs[i].getAttribute('name').replace('[template]', `[destinations_attributes][${id}]`))
-      inputs[i].setAttribute('id', inputs[i].getAttribute('id').replace('[template]', `destinations_attributes_${id}`))
-      inputs[i].value = ''
-    }
+    inputs.forEach(input => {
+      input.setAttribute('name', input.getAttribute('name').replace('[template]', `[destinations_attributes][${id}]`))
+      input.setAttribute('id', input.getAttribute('id').replace('[template]', `destinations_attributes_${id}`))
+      input.value = ''
+    })
     newDestination.querySelector('div').classList.add(this.paddingWebClass, this.paddingMobileClass)
     this.formTarget.appendChild(newDestination)
     this.errorRemoveTarget.classList.add(this.hideClass)
