@@ -1,0 +1,36 @@
+<% content_for :header do %>
+  <% render 'header', show_mobile: true, categories: @categories, filters: @filters, selected_tab: :none  %>
+<% end %>
+<div class="d-flex flex-column">
+  <div class="d-flex justify-content-center justify-content-md-between align-items-baseline border-bottom-solid">
+    <h1 class= "bg-text-gradient-blue-20 text-fill-color-transparent">Mis Pedidos</h1>
+    <div class="">
+      <div class="d-none d-md-flex flex-column align-items-end fs-md-5 fs-lg-3">
+        <%= link_to 'Volver al inicio', root_path, class: 'fw-light text-blue-2 text-decoration-none mb-0' %>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-sm-between justify-content-center pt-8 flex-wrap row-gap-5">
+    <% @purchases.each do |purchase| %>
+      <%= link_to  purchase_path(purchase), class:'text-decoration-none' do %>
+        <div class="d-flex flex-column bg-white rounded-2 hover-border-grey border-style-solid border-color-transparent me-2">
+          <div>
+            <%= image_tag(purchase.gift.image_resized, class: 'rounded-top-2') %>
+          </div>
+          <div class="d-flex flex-column px-3 pt-4">
+            <div class="d-flex justify-content-between mb-3">
+              <p class= "fs-4 fw-medium mb-0 text-black"><%= purchase.gift_name.truncate(12, separator: ' ') %></p>
+              <div class="d-flex align-items-center">
+                <p class="mb-0 fs-4 text-black"> <%= I18n.l(purchase.created_at, format: "%B %d, %Y") %> </p>
+              </div>
+            </div>
+            <p class="fs-4 text-blue-2 mb-3 text-center">$<%= purchase.gift_price %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="d-flex my-3 justify-content-center mx-0">
+    <%= paginate @purchases %>
+  </div>
+</div>

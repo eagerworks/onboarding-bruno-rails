@@ -11,4 +11,8 @@ class Purchase < ApplicationRecord
   delegate :name, to: :payment_method, prefix: true
   validates :destinations, length: { minimum: 1 }
   validates :personalization, :social_reason, :RUT, :destinations, presence: true
+
+  def logo_resized
+    company_logo.variant(resize_to_limit: [50, 25]).processed
+  end
 end
