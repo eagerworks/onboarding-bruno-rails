@@ -16,15 +16,30 @@ es:
       signed_up: Usuario creado correctamente
       updated: Usuario actualizado correctamente
     sessions:
-      user:
-        signed_out: Sesión cerrada correctamente
-        signed_in: Usuario logeado correctamente
+      signed_out: Sesión cerrada correctamente
+      signed_in: Usuario logeado correctamente
     failure:
+      unauthenticated: Debe iniciar sesión primero
+      invalid: Usuario o Contraseña incorrectos
+      not_found_in_database: Usuario o Contraseña incorrectos
+  active_admin:
+    resources:
       user:
-        unauthenticated: Debe iniciar sesión primero
-        invalid: Usuario o Contraseña incorrectos
-        not_found_in_database: Usuario o Contraseña incorrectos
+        new_model: "Añadir Usuario"
+      gift:
+        new_model: "Añadir Regalo"
+      supplier:
+        new_model: "Añadir Proveedor"
   activerecord:
+    models:
+      supplier: Proveedor
+      gift: Regalo
+      user: Usuario
+      purchase: Compra
+      payment_method: Método de Pago
+      customization: Personalización
+      category: Categoría
+      destination: Destino
     errors:
       models:
         payment_method:
