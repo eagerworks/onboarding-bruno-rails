@@ -6,6 +6,8 @@ FactoryBot.define do
     number { Faker::PhoneNumber.cell_phone }
     schedules { "#{Faker::Number.between(from: 10, to: 18)}hs" }
     cost { Faker::Number.between(from: 1, to: 100) }
-    purchase { nil }
+    after(:build) do |destination|
+      destination.purchase ||= build(:purchase, destinations: [destination])
+    end
   end
 end

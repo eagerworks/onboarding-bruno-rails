@@ -9,7 +9,7 @@ class Gift < ApplicationRecord
   has_one_attached :image
   has_rich_text :content
 
-  validates :name, :price, :valoration, :supplier, :image, :categories, :customizations,
+  validates :name, :price, :valoration, :supplier, :image, :categories,
             :content, presence: true
   validates :price, numericality: { greater_than: 0 }
   validates :valoration, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
