@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :category do
-    name { 'dummy' }
+    sequence :name do |n|
+      ['Para Compartir', 'Sin azucar', 'Sin Tacc', 'Picadas', 'Veganos/Vegetarianos'][n % 5]
+    end
   end
 end

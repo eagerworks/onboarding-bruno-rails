@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :customization do
-    name { 'MyString' }
-    price { 1.5 }
+    name { Faker::Food.unique.ingredient }
+    price { Faker::Number.between(from: 1, to: 100) }
   end
 end
