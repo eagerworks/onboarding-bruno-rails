@@ -12,8 +12,8 @@ FactoryBot.define do
         purchase.destinations = build_list(:destination, 1,
                                            purchase: purchase)
       end
-      purchase.gift = create(:gift) if purchase.gift.nil?
-      purchase.payment_method = create(:payment_method) if purchase.payment_method.nil?
+      purchase.gift ||= create(:gift)
+      purchase.payment_method ||= create(:payment_method)
       purchase.subtotal = purchase.amount * purchase.gift_price
       purchase.price = purchase.subtotal + (purchase.subtotal * 0.22).to_i + 180
     end
