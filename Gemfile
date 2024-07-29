@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.0'
+ruby '3.3.4'
 
 gem 'devise', '~> 4.9'
 gem 'pg', '~> 1.4', '>= 1.4.2'
@@ -90,6 +90,6 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 6.0'
   gem 'simplecov', require: false
 end

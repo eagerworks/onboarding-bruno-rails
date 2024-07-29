@@ -17,6 +17,7 @@ class Gift < ApplicationRecord
   scope :with_categories, lambda { |categories|
     joins(:gift_categorizations)
       .where(gift_categorizations: { category_id: categories })
+      .distinct
   }
 
   def image_resized
