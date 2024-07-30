@@ -200,6 +200,7 @@ $utilities: map-merge(
   )
 );
 
+
 .border-solid {
   border-style: solid;
   border-color: black;
@@ -208,6 +209,11 @@ $utilities: map-merge(
   top: 10%;
   left: 15%;
   transform: translate(-50%, -50%);
+}
+
+.finish-purchase-logo{
+  width: 105px;
+  height: 129px;
 }
 
 .img-highlight{

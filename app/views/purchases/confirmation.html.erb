@@ -1,0 +1,10 @@
+<% content_for :header do %>
+  <% render 'header', show_mobile: true, categories: @categories, filters: @filters, selected_tab: :gifts  %>
+<% end %>
+<div class="d-flex flex-column align-items-center px-12 pt-lg-10">
+  <%= image_tag("Logo.svg", class:"finish-purchase-logo mb-8") %>
+  <h1 class= "bg-text-gradient-blue-20 text-fill-color-transparent fs-6 fw-medium mb-3 fs-sm-8"> Pedido realizado</h1>
+  <p class = "fs-1 text-center mb-8 fs-sm-3" >Te enviaremos una notificación una vez que el servicio esté confirmado.</p>
+  <%= link_to 'VOLVER AL INICIO', root_path, class: 'w-100 btn btn-outline-dark px-5 py-1 fs-sm-5 d-md-none'%>
+  <%= link_to 'VOLVER AL INICIO', root_path, class: 'd-none d-md-flex btn btn-outline-dark px-5 py-1 fs-5'%>
+</div>

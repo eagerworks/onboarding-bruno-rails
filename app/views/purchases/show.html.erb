@@ -1,0 +1,111 @@
+<% content_for :header do %>
+  <% render 'header', show_mobile: false, categories: @categories, filters: @filters, selected_tab: :none  %>
+<% end %>
+<div data-controller="purchase-process" data-purchase-process-hide-class='d-none' class="d-lg-flex  justify-content-around">
+  <div data-controller = "show-destinations" data-show-destinations-hide-class='d-none' data-purchase-process-target= "delivery">
+    <div class="d-flex flex-column top-0 position-lg-static position-absolute mt-md-16 mt-lg-0">
+      <%= link_to '< Volver', purchases_path, class: 'fw-light text-black text-decoration-none fs-2 fs-sm-6 mt-7 mb-md-3 mb-7 d-lg-none' %>
+      <h3 class="fw-medium fs-4 fs-sm-6 bg-text-gradient-blue-20 text-fill-color-transparent mb-5 mb-md-1 d-lg-none">Detalles de la entrega </h3>
+      <h3 class="fw-medium fs-6 bg-text-gradient-blue-20 text-fill-color-transparent mb-lg-3 d-none d-lg-flex">Detalles de la entrega </h3>
+      <h4 class='fw-medium fs-3 fs-sm-5 mt-md-3 mt-lg-0'>Destinatarios</h4>
+      <div class="d-flex">
+        <button class="fs-6 border-0 bg-transparent ps-0" data-action="click->show-destinations#left" data-show-destinations-target="leftButton" disabled="true"><</button>
+            <button class="fs-6 border-0 bg-transparent ms-2" data-action="click->show-destinations#right" data-show-destinations-target="rightButton" >>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex mt-2 mt-sm-20 mt-md-21 mt-lg-2">
+          <div class="d-none" data-show-destinations-target="destinationCount"><%= @purchase.destinations.count %> </div>
+          <div class="d-none " data-show-destinations-target="index"> 0 </div>
+          <div class="w-100" data-show-destinations-target="destinations" >
+            <% @purchase.destinations.each_with_index do |destination, index| %>
+              <div class="d-flex flex-column flex-lg-row column-gap-lg-6 <%= 'd-none' unless index.zero? %>">
+                <div class="d-flex flex-column">
+                  <div class="d-flex flex-column">
+                    <h5 class="fs-1 fw-light mb-0 fs-sm-3 fs-lg-1" >Nombre </h5>
+                    <p class="text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-sm-5 fs-lg-3" ><%= destination.receiver %></p>
+                  </div>
+                  <div class="d-flex flex-column w-100">
+                    <h5 class="fs-1 fw-light mb-0 fs-sm-3 fs-lg-1" >Fecha de entrega </h5>
+                    <p class="text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-sm-5 fs-lg-3" ><%= destination.day %></p>
+                  </div>
+                  <div class="d-flex flex-column w-100">
+                    <h5 class="fs-1 fw-light mb-0 fs-sm-3 fs-lg-1" >Dirección </h5>
+                    <p class="text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-sm-5 fs-lg-3" ><%= destination.address %></p>
+                  </div>
+                </div>
+                <div class="d-flex flex-column">
+                  <div class="d-flex flex-column w-100">
+                    <h5 class="fs-1 fw-light mb-0 fs-sm-3 fs-lg-1" >Número de contacto </h5>
+                    <p class="text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-sm-5 fs-lg-3" ><%= destination.number %></p>
+                  </div>
+                  <div class="d-flex flex-column w-100">
+                    <h5 class="fs-1 fw-light mb-0 fs-sm-3 fs-lg-1" >Horarios de entrega </h5>
+                    <p class="text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-sm-5 fs-lg-3" ><%= destination.schedules %></p>
+                  </div>
+                  <div class="d-flex flex-column w-100">
+                    <h5 class="fs-1 fw-light mb-0 fs-sm-3 fs-lg-1" >Costo de envío </h5>
+                    <p class="text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-sm-5 fs-lg-3" ><%= destination.cost %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="d-flex flex-column mt-3">
+          <p class="fs-2 fw-light mb-2 fs-sm-4 fs-lg-2">
+            <%= image_tag(@purchase.suprise_delivery ? 'tic.svg' : 'cross.svg', width: '24px', height: '24px', class:'vertical-align-middle') %>
+            Entrega Sopresa
+          </p>
+          <p class="fs-2 fw-light fs-sm-4 fs-lg-2">
+            <%= image_tag(@purchase.resend_delivery ? 'tic.svg' : 'cross.svg', width: '24px', height: '24px', class:'vertical-align-middle') %>
+            Intentar Reenvíos
+          </p>
+          <p class="fs-2 fw-light fs-sm-4 fs-lg-2">
+            Logo Adjuntado:  <%= image_tag(@purchase.company_logo.present? ? @purchase.logo_resized : 'cross.svg', class:'vertical-align-middle') %>
+          </p>
+          <h4 class="fs-3 fs-sm-5 fw-medium mb-0 mt-2">Personalización</h4>
+          <p class="border-0 text-role-grey fs-1 mt-1 bg-white rounded-1 w-100 fs-sm-3 fs-lg-1 bg-lg-strong-grey"> <%= @purchase.personalization %> </p>
+          <button type='button' class= 'd-lg-none color-white bg-Blue-lg-30deg border-1 rounded-2 hover-bg-white fs-3 fs-sm-6 hover-border-solid fs-xl-4 hover-border-color-mixBlue border-color-transparent w-100 mt-5' data-action= "click->purchase-process#showPurchase" > Detalles de la Compra</button>
+        </div>
+      </div>
+      <div class="d-none d-lg-flex flex-column bg-lg-white px-lg-10 py-lg-4 justify-content-between mb-lg-2" data-purchase-process-target= "purchase">
+        <div class="d-flex flex-column top-0 position-absolute mt-md-16 mt-lg-0 position-lg-static">
+          <button type='button' data-action= "click->purchase-process#showDelivery" class="fw-light text-start fs-2 fs-sm-6 mt-6 mb-7 border-0 bg-transparent d-lg-none mb-md-3"> < Volver </button>
+              <h3 class="fw-medium fs-4 fs-sm-6 bg-text-gradient-blue-20 text-fill-color-transparent mb-5 d-lg-none mb-md-1">Detalles de compra </h3>
+              <h3 class="fw-medium fs-5 mb-3 d-none d-lg-flex">Detalles de compra </h3>
+              <div class="d-flex column-gap-3">
+                <%= image_tag(@purchase.gift.image_resized_for_purchase, class:'img-gift-purchase') %>
+                <div class="d-flex flex-column mt-3 mt-lg-0">
+                  <h4 class="fs-3 fs-sm-5 fs-lg-3 mb-0 fw-normal mb-1"><%= "#{@purchase.gift.supplier_name} | #{@purchase.gift_name}" %></h4>
+                  <p class="fs-2 fs-sm-4 fw-light text-role-grey mb-0 fs-lg-1">Pagado a través de  <%= @purchase.payment_method_name %> </p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column mt-6 mt-sm-21 mt-md-22 mt-lg-3">
+              <h4 class="fs-3 fs-sm-5 fw-medium mt-4 mt-sm-7 mt-lg-0 fs-lg-3">Personalizaciones Incluidas: <span class= "fs-3 fw-light mb-2 fs-sm-5 fs-lg-3"><%= @purchase.customizations.empty? ? 'Ninguna' : '' %></span></h4>
+              <ul>
+                <% @purchase.customizations.each do |customization| %>
+                  <li class= "fs-2 fw-light mb-2 fs-sm-4 fs-lg-2">
+                    <%= customization.name%>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="d-flex flex-column">
+              <h4 class='fw-medium fs-3 fs-sm-5 fs-lg-3 mb-3'>Información de facturación</h4>
+              <div class="d-flex flex-column">
+                <h5 class="fs-1 fw-light mb-0 fs-sm-3 fs-lg-1" >RUT </h5>
+                <p class="text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-sm-5 fs-lg-3 bg-transparent" ><%= @purchase.RUT %></p>
+              </div>
+              <div class="d-flex flex-column">
+                <h5 class="fs-1 fw-light mb-0 fs-sm-3 fs-lg-1" >Razón Social </h5>
+                <p class="text-role-grey border-0 border-bottom-solid outline-none w-100 ps-0 pb-1 fs-sm-5 fs-lg-3 bg-transparent" ><%= @purchase.social_reason %></p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between mb-6 mb-lg-0 mt-2">
+              <p class="fs-3 fs-sm-5 mb-0 fs-lg-2 fw-medium">TOTAL </p>
+              <p class= 'fs-3 fs-sm-5 fw-medium  fs-lg-3 mb-0'>$ <%= @purchase.price %>
+              </div>
+            </div>
+          </div>

@@ -28,5 +28,8 @@ application.register("notification", NotificationController)
 import PurchaseProcessController from "./purchase_process_controller"
 application.register("purchase-process", PurchaseProcessController)
 
+import ShowDestinationsController from "./show_destinations_controller"
+application.register("show-destinations", ShowDestinationsController)
+
 import StyleLabelsController from "./style_labels_controller"
 application.register("style-labels", StyleLabelsController)

@@ -7,11 +7,21 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     if @purchase.save
-      redirect_to root_path
+      redirect_to confirmation_purchases_path
     else
       flash.now[:alert] = 'No se pudo realizar la compra, revise el formulario.'
       render 'new', status: :unprocessable_entity
     end
+  end
+
+  def index
+    @purchases = Purchase.joins(:payment_method).where(payment_methods: { user: current_user })
+                         .includes(:gift)
+                         .page(params[:page])
+  end
+
+  def show
+    @purchase = Purchase.find(params[:id])
   end
 
   private
