@@ -2,18 +2,17 @@ ActiveAdmin.register Gift do
   permit_params :name, :price, :valoration, :supplier_id, :image, :content, category_ids: [],
                                                                             customization_ids: []
 
-  menu label: 'Regalos'
   remove_filter :gift_customizations, :gift_categorizations, :purchases,
                 :image_attachment, :image_blob, :rich_text_content
 
-  filter :name, label: 'Nombre'
-  filter :price, label: 'Precio'
-  filter :valoration, label: 'Valoración'
-  filter :supplier, label: 'Proveedor'
-  filter :categories, label: 'Categorías', multiple: true
-  filter :customizations, label: 'Personalizaciones', multiple: true
-  filter :created_at, label: 'Fecha de creación'
-  filter :updated_at, label: 'Última actualización'
+  filter :name
+  filter :price
+  filter :valoration
+  filter :supplier
+  filter :categories, multiple: true
+  filter :customizations, multiple: true
+  filter :created_at
+  filter :updated_at
 
   controller do
     def scoped_collection
@@ -24,21 +23,21 @@ ActiveAdmin.register Gift do
   index do
     selectable_column
     id_column
-    column 'Nombre', :name
-    column 'Precio', :price
-    column 'Valoración', :valoration
-    column 'Proveedor', :supplier
-    column 'Fecha de creación', :created_at
-    column 'Última actualización', :updated_at
+    column :name
+    column :price
+    column :valoration
+    column :supplier
+    column :created_at
+    column :updated_at
     actions
   end
 
   show do
     attributes_table do
-      row 'Nombre', &:name
-      row 'Precio', &:price
-      row 'Valoración', &:valoration
-      row 'Proveedor', &:supplier
+      row :name
+      row :price
+      row :valoration
+      row :supplier
       row 'Imagen' do |gift|
         image_tag gift.image_resized_for_purchase
       end
@@ -59,22 +58,22 @@ ActiveAdmin.register Gift do
           end
         end
       end
-      row 'Fecha de creación', &:created_at
-      row 'Última actualización', &:updated_at
+      row :created_at
+      row :updated_at
     end
     active_admin_comments
   end
 
   form do |f|
     f.inputs 'Detalles' do
-      f.input :name, label: 'Nombre'
-      f.input :price, label: 'Precio'
-      f.input :valoration, label: 'Valoración'
-      f.input :supplier, label: 'Proveedor'
-      f.input :image, label: 'Imagen', as: :file
-      f.input :content, label: 'Contenido'
-      f.input :categories, label: 'Categorías'
-      f.input :customizations, label: 'Personalizaciones'
+      f.input :name
+      f.input :price
+      f.input :valoration
+      f.input :supplier
+      f.input :image, as: :file
+      f.input :content
+      f.input :categories
+      f.input :customizations
     end
     f.actions
   end

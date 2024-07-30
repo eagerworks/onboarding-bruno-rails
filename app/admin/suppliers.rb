@@ -1,9 +1,8 @@
 ActiveAdmin.register Supplier do
-  menu label: 'Proveedores'
   remove_filter :gifts
-  filter :name, label: 'Nombre'
-  filter :created_at, label: 'Fecha de creación'
-  filter :updated_at, label: 'Última actualización'
+  filter :name
+  filter :created_at
+  filter :updated_at
   permit_params :name
 
   controller do
@@ -15,7 +14,7 @@ ActiveAdmin.register Supplier do
   index do
     selectable_column
     id_column
-    column 'Nombre', :name
+    column :name
     column 'Regalos' do |supplier|
       dropdown_menu '' do
         supplier.gifts.each do |gift|
@@ -23,22 +22,22 @@ ActiveAdmin.register Supplier do
         end
       end
     end
-    column 'Fecha de creación', :created_at
-    column 'Última actualización', :updated_at
+    column :created_at
+    column :updated_at
 
     actions
   end
 
   form do |f|
     f.inputs 'Detalles' do
-      f.input :name, label: 'Nombre'
+      f.input :name
     end
     f.actions
   end
 
   show do
     attributes_table do
-      row 'Nombre', &:name
+      row :name
       row 'Regalos' do |supplier|
         dropdown_menu '' do
           supplier.gifts.each do |gift|
@@ -46,8 +45,8 @@ ActiveAdmin.register Supplier do
           end
         end
       end
-      row 'Fecha de creación', &:created_at
-      row 'Última actualización', &:updated_at
+      row :created_at
+      row :updated_at
     end
     active_admin_comments
   end

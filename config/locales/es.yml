@@ -31,6 +31,74 @@ es:
       supplier:
         new_model: "Añadir Proveedor"
   activerecord:
+    attributes:
+      category:
+        name: Nombre
+        created_at: Fecha de Creación
+        updated_at: Última Actualización
+      customization:
+        name: Nombre
+        price: Precio
+        created_at: Fecha de Creación
+        updated_at: Última Actualización
+      gift:
+        name: Nombre
+        price: Precio
+        valoration: Valoración
+        supplier: Proveedor
+        content: Contenido
+        categories: Categorías
+        image: Imagen
+        customizations: Personalizaciones
+        created_at: Fecha de Creación
+        updated_at: Última Actualización
+      purchase:
+        RUT: RUT
+        social_reason: Razón Social
+        destinatios: Destinos
+        personalization: Mensaje Personalizado
+        payment_method: Método de Pago
+        user: Usuario
+        created_at: Fecha de Compra
+        updated_at: Última Actualización
+        supplier: Proveedor
+        customizations: Agregados
+        suprise_delivery: Entrega Sorpresa
+        resend_delivery: Reenvío Disponible
+        amount: Cantidad
+        gift: Regalo
+        price: Precio
+        company_logo: Logo
+      destination:
+        receiver: Nombre
+        day: Día
+        schedules: Horarios
+        address: Dirección
+        number: Número de Contacto
+        cost: Costo
+        created_at: Fecha de Creación
+        updated_at: Última Actualización
+      supplier:
+        name: Nombre
+        gifts: Regalos
+        created_at: Fecha de Creación
+        updated_at: Última Actualización
+      user:
+        name: Nombre
+        last_name: Apellido
+        email: Email
+        company_name: Empresa
+        password: Contraseña
+        created_at: Fecha de Creación
+        updated_at: Última Actualización
+      payment_method:
+        name: Nombre
+        owner: Titular
+        card_number: Número de Tarjeta
+        due_date: Fecha de Venicimiento
+        CVV: CVV
+        created_at: Fecha de Creación
+        updated_at: Última Actualización
     models:
       supplier: Proveedor
       gift: Regalo

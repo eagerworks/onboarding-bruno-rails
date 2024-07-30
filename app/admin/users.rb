@@ -1,13 +1,13 @@
 ActiveAdmin.register User do
   permit_params :name, :last_name, :email, :company_name, :password,
                 payment_methods_attributes: %i[id name owner card_number due_date CVV _destroy]
-  menu label: 'Usuarios'
-  filter :name, label: 'Nombre'
-  filter :last_name, label: 'Apellido'
-  filter :email, label: 'Email'
-  filter :company_name, label: 'Empresa'
-  filter :created_at, label: 'Fecha de creación'
-  filter :updated_at, label: 'Última actualización'
+
+  filter :name
+  filter :last_name
+  filter :email
+  filter :company_name
+  filter :created_at
+  filter :updated_at
 
   controller do
     def scoped_collection
@@ -18,10 +18,10 @@ ActiveAdmin.register User do
   index do
     selectable_column
     id_column
-    column 'Nombre', :name
-    column 'Apellido', :last_name
-    column 'Email', :email
-    column 'Empresa', :company_name
+    column :name
+    column :last_name
+    column :email
+    column :company_name
     column 'Métodos de Pago' do |user|
       dropdown_menu '' do
         user.payment_methods.each do |payment_method|
@@ -29,17 +29,17 @@ ActiveAdmin.register User do
         end
       end
     end
-    column 'Fecha de creación', :created_at
-    column 'Última actualización', :updated_at
+    column :created_at
+    column :updated_at
     actions
   end
 
   show do
     attributes_table do
-      row 'Nombre', &:name
-      row 'Apellido', &:last_name
-      row 'Email', &:email
-      row 'Empresa', &:company_name
+      row :name
+      row :last_name
+      row :email
+      row :company_name
       row 'Métodos de Pago' do |user|
         dropdown_menu '' do
           user.payment_methods.each do |payment_method|
@@ -47,29 +47,29 @@ ActiveAdmin.register User do
           end
         end
       end
-      row 'Fecha de creación', &:created_at
-      row 'Última actualización', &:updated_at
+      row :created_at
+      row :updated_at
     end
     active_admin_comments
   end
 
   form do |f|
     f.inputs 'Detalles del Usuario' do
-      f.input :name, label: 'Nombre'
-      f.input :last_name, label: 'Apellido'
+      f.input :name
+      f.input :last_name
       f.inputs 'Métodos de Pago' do
         f.has_many :payment_methods,
                    allow_destroy: true, heading: false do |payment_method|
-          payment_method.input :name, label: 'Nombre'
-          payment_method.input :owner, label: 'Titular'
-          payment_method.input :card_number, label: 'Número de Tarjeta'
-          payment_method.input :due_date, label: 'Fecha de Vencimiento', as: :date_picker
-          payment_method.input :CVV, label: 'CVV'
+          payment_method.input :name
+          payment_method.input :owner
+          payment_method.input :card_number
+          payment_method.input :due_date, as: :date_picker
+          payment_method.input :CVV
         end
       end
-      f.input :email, label: 'Email'
-      f.input :company_name, label: 'Empresa'
-      f.input :password, label: 'Contraseña' if f.object.new_record?
+      f.input :email
+      f.input :company_name
+      f.input :password if f.object.new_record?
     end
     f.actions
   end
