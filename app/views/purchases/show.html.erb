@@ -78,6 +78,7 @@
                 <%= image_tag(@purchase.gift.image_resized_for_purchase, class:'img-gift-purchase') %>
                 <div class="d-flex flex-column mt-3 mt-lg-0">
                   <h4 class="fs-3 fs-sm-5 fs-lg-3 mb-0 fw-normal mb-1"><%= "#{@purchase.gift.supplier_name} | #{@purchase.gift_name}" %></h4>
+                   <p class="fs-2 fs-sm-4 fw-light mb-1 fs-lg-1">Se compraron  <%= @purchase.amount %> Unidades </p>
                   <p class="fs-2 fs-sm-4 fw-light text-role-grey mb-0 fs-lg-1">Pagado a través de  <%= @purchase.payment_method_name %> </p>
                 </div>
               </div>

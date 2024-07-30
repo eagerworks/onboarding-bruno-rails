@@ -9,7 +9,7 @@ class GiftsController < ApplicationController
                        end
     query = Gift.with_categories(query_categories)
                 .with_attached_image.includes(:supplier)
-                .order(selected_order).distinct
+                .order(selected_order)
     @gifts_count = query.count
     @gifts = query.page(params[:page])
   end

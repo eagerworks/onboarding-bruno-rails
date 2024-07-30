@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   def new
     @purchase = Purchase.new(purchase_params_with_defaults)
+    puts @purchase.subtotal
     @purchase.destinations.build
   end
 
