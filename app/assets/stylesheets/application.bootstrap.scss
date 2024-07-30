@@ -359,6 +359,11 @@ $utilities: map-merge(
   pointer-events: none;
 }
 
+.img-destinations {
+  width: 30px;
+  height: 30px;
+}
+
 .shadow {
   position: absolute;
   width: 100%;
@@ -453,13 +458,19 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100px;
     height: 100px;
   }
-
+  .img-destinations {
+    width: 15px;
+    height: 15px;
+  }
 
 
 }
 
 @include media-breakpoint-up(xl) {
-
+  .img-destinations {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 

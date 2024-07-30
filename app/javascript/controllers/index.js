@@ -7,6 +7,9 @@ import { application } from "./application"
 import AutoSubmitController from "./auto_submit_controller"
 application.register("auto-submit", AutoSubmitController)
 
+import DestinationsController from "./destinations_controller"
+application.register("destinations", DestinationsController)
+
 import DropDownController from "./dropDown_controller"
 application.register("dropDown", DropDownController)
 

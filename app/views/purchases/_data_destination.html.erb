@@ -1,0 +1,43 @@
+<div class="d-flex flex-column flex-lg-row column-gap-2 column-gap-lg-4" >
+  <div class="">
+    <div class="mb-5 mb-sm-6 mb-lg-2">
+      <%= destination_form.text_field :receiver, placeholder: 'Nombre y apellido',  class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1 pe-lg-2' %>
+      <% destination_form.object.errors[:receiver].each do |message| %>
+        <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+      <% end %>
+    </div>
+    <div class="mb-5 mb-sm-6 mb-lg-2">
+      <%= destination_form.label :day, 'Fecha de entrega', class:'text-role-grey fs-sm-5 fs-lg-3 d-lg-none' %>
+      <%= destination_form.date_field :day, min: Date.today,  class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+      <% destination_form.object.errors[:day].each do |message| %>
+        <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+      <% end %>
+    </div>
+    <div class="mb-5 mb-sm-6 mb-lg-2">
+      <%= destination_form.text_field :address, placeholder: 'Dirección de entrega', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+      <% destination_form.object.errors[:address].each do |message| %>
+        <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="">
+    <div class="mb-5 mb-sm-6 mb-lg-2 ">
+      <%= destination_form.text_field :number, placeholder: 'Número de contacto', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+      <% destination_form.object.errors[:number].each do |message| %>
+        <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+      <% end %>
+    </div>
+    <div class="mb-5 mb-sm-6 mb-lg-2">
+      <%= destination_form.text_field :schedules, placeholder: 'Horarios de entrega', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1 pe-lg-2' %>
+      <% destination_form.object.errors[:schedules].each do |message| %>
+        <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+      <% end %>
+    </div>
+    <div class="mb-3">
+      <%= destination_form.text_field :cost, placeholder: 'Costo de envío', class: 'border-0 border-bottom-solid outline-none text-role-grey bg-transparent grey-placeholder w-100 fs-sm-5 fs-lg-1' %>
+      <% destination_form.object.errors[:cost].each do |message| %>
+        <p class= "text-danger mb-0 fs-lg-1"><%= message %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
