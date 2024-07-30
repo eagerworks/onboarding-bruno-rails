@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PaymentMethod, type: :model do
-  include FactoryBot::Syntax::Methods
   it 'has a valid factory' do
     expect(build(:payment_method)).to be_valid
   end

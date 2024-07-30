@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  include FactoryBot::Syntax::Methods
   it 'has a valid factory' do
     expect(build(:category)).to be_valid
   end
