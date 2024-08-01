@@ -21,7 +21,11 @@ class Gift < ApplicationRecord
   }
 
   def image_resized
-    image.variant(resize_to_limit: [223, 176]).processed
+    if image.attached?
+      image.variant(resize_to_limit: [223, 176]).processed
+    else
+      'cross.svg'
+    end
   end
 
   def image_resized_for_purchase

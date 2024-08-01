@@ -22,8 +22,9 @@
     </div>
   <% end %>
 </div>
-<div class="d-flex justify-content-sm-between justify-content-center pt-8 flex-wrap row-gap-5">
+<ul class="d-flex justify-content-sm-between justify-content-center pt-8 flex-wrap row-gap-5 list-style-type-none ps-0">
   <% @gifts.each do |gift| %>
+  <li data-value=<%= gift.id %>>
     <%= link_to  gift_path(gift), class:'text-decoration-none' do %>
       <div class="d-flex flex-column bg-white rounded-2 hover-border-grey border-style-solid border-color-transparent me-2">
         <div>
@@ -41,8 +42,9 @@
         </div>
       </div>
     <% end %>
+  </li>
   <% end %>
-</div>
+</ul>
 <div class="d-flex my-3 justify-content-center mx-0">
   <%= paginate @gifts %>
 </div>

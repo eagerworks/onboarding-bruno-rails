@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :gift do
-    name { Faker::Food.dish }
+    name { Faker::Food.unique.dish }
     price { Faker::Number.between(from: 1, to: 1000) }
     valoration { Faker::Number.between(from: 0.0, to: 5.0).round(1) }
 
@@ -22,7 +22,9 @@ FactoryBot.define do
     end
 
     trait(:with_customizations) do
-      customizations { create_list(:customization, 3, gifts: [gift]) }
+      after(:create) do |gift|
+        gift.customizations = create_list(:customization, 3, gifts: [gift])
+      end
     end
   end
 end

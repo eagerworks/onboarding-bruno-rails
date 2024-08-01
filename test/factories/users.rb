@@ -6,4 +6,10 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     company_name { Faker::Company.name }
   end
+
+  trait(:with_payment_methods) do
+    after(:create) do |user|
+      user.payment_methods = create_list(:payment_method, 3, user: user)
+    end
+  end
 end

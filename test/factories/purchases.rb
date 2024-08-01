@@ -17,5 +17,27 @@ FactoryBot.define do
       purchase.subtotal = purchase.amount * purchase.gift_price
       purchase.price = purchase.subtotal + (purchase.subtotal * 0.22).to_i + 180
     end
+
+    trait(:with_mutliple_destinations) do
+      after(:build) do |purchase|
+        purchase.destinations = build_list(:destination, 3,
+                                           purchase: purchase)
+      end
+    end
+
+    trait(:with_company_logo) do
+      after(:build) do |purchase|
+        image_folder = Rails.root.join('test', 'assets', 'images')
+        images = Dir.entries(image_folder).reject do |f|
+          File.directory?(File.join(image_folder, f))
+        end
+        random_image = images.sample
+        purchase.company_logo.attach(
+          io: File.open(File.join(image_folder, random_image)),
+          filename: random_image,
+          content_type: 'image/png'
+        )
+      end
+    end
   end
 end

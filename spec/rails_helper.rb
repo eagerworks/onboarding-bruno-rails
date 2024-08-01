@@ -1,3 +1,4 @@
+require 'webdrivers'
 require 'simplecov'
 SimpleCov.start
 # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -65,6 +66,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers, type: :feature
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -72,3 +74,8 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
+end
+
+Capybara.javascript_driver = :selenium
