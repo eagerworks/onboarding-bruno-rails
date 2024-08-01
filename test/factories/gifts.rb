@@ -1,20 +1,8 @@
 FactoryBot.define do
   factory :gift do
-    name { Faker::Food.dish }
+    name { Faker::Food.unique.dish }
     price { Faker::Number.between(from: 1, to: 1000) }
     valoration { Faker::Number.between(from: 0.0, to: 5.0).round(1) }
-
-    supplier do
-      Supplier.all.sample
-    end
-
-    categories do
-      Category.all.sample(3)
-    end
-
-    customizations do
-      Customization.all.sample(4)
-    end
 
     content do
       GIFT_CONTENT_LISTS.sample
@@ -29,9 +17,14 @@ FactoryBot.define do
         filename: random_image,
         content_type: 'image/png'
       )
+      gift.supplier ||= create(:supplier)
+      gift.categories = create_list(:category, 3) if gift.categories.empty?
     end
-    # trait(:with_categories) do
-    #   Category.all.sample(3)
-    # end
+
+    trait(:with_customizations) do
+      after(:create) do |gift|
+        gift.customizations = create_list(:customization, 3, gifts: [gift])
+      end
+    end
   end
 end

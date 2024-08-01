@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.0'
+ruby '3.3.4'
 
 gem 'devise', '~> 4.9'
 gem 'pg', '~> 1.4', '>= 1.4.2'
@@ -56,11 +56,16 @@ gem 'faker'
 
 gem 'kaminari'
 
+gem 'sassc'
+
+gem 'activeadmin'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'bullet'
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -83,5 +88,9 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 6.0'
+  gem 'simplecov', require: false
+  gem 'webdrivers'
 end
